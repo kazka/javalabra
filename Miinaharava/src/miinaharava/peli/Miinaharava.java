@@ -1,19 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package miinaharava;
+package miinaharava.peli;
 
-/**
- *
- * @author kaka
- */
-public class Miinaharava {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import miinaharava.gui.Pelilauta;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Miinaharava implements ActionListener {
+
+    private Pelilauta lauta;
+
+    public Miinaharava(Pelilauta lauta) {
+        this.lauta = lauta;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void start() {
+        this.lauta.asetaMiinat();
     }
 }
