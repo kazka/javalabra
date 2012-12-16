@@ -10,7 +10,6 @@ public class Pelilauta {
     private int leveys;
     private int korkeus;
     private int miinoja;
-    //private ArrayList<Ruutu> ruudut;
     private Ruutu[][] taulukko;
     
     public Pelilauta(int leveys, int korkeus, int miinoja) {
@@ -18,73 +17,85 @@ public class Pelilauta {
         this.korkeus = korkeus;
         this.miinoja = miinoja;
         this.taulukko = new Ruutu [korkeus][leveys];
-        //this.ruudut = new ArrayList<>();
-        for (int i = 0; i < leveys; i++){
-            for (int j = 0; j < korkeus; j++){
-                this.taulukko[j][i] = new Ruutu();
+        for (int i = 0; i < korkeus; i++){
+            for (int j = 0; j < leveys; j++){
+                this.taulukko[i][j] = new Ruutu();
             }
         }
     }
-   
-//    public Ruutu haeRuutu(int x, int y){
-//        for (Ruutu ruutu : this.ruudut){
-//            if (ruutu.getX() == x && ruutu.getY() == y){
-//                return ruutu;
-//            }
-//        }
-//        
-//        return null;
-//    }
     
     public void asetaMiinat(){
         Random random = new Random();
-        for (int i = 0; i < this.miinoja; i++){
+        for (int i = 0; i <= this.miinoja; i++){
             int randomX = random.nextInt(this.leveys);
             int randomY = random.nextInt(this.korkeus);
-            for (Ruutu ruutu : this.ruudut){
-                if (!ruutu.onkoMiinaa()){
-                    if (ruutu.getX() == randomX && ruutu.getY() == randomY){
-                        ruutu.setSisalto(9);
-                    }
+                if (!taulukko[randomY][randomX].onkoMiinaa()){
+                     taulukko[randomY][randomX].setSisalto(9);
                 }
-            }
         }
     }
     
     public void asetaMiinattomat(){
-        for (Ruutu ruutu : this.ruudut){
-            if (!ruutu.onkoMiinaa()){
-                ruutu.setSisalto(laskeYmparoivatMiinat(ruutu));
+        for (int i = 0; i < this.korkeus; i++){
+            for (int j = 0; j < this.leveys; j++){
+                if (!taulukko[i][j].onkoMiinaa()){
+                    taulukko[i][j].setSisalto(laskeYmparoivatMiinat(i, j));
+                }
             }
         }
     }
 
-    public int laskeYmparoivatMiinat(Ruutu ruutu) {
+    public int laskeYmparoivatMiinat(int x, int y) {
         int miinat = 0;
-        if (haeRuutu(ruutu.getX()-1, ruutu.getY()-1).onkoMiinaa()){
+        if (x > 0 && y > 0 && taulukko[x-1][y-1].onkoMiinaa()){
             miinat++;
         }
-        if (haeRuutu(ruutu.getX()-1, ruutu.getY()).onkoMiinaa()){
-            miinat++;
-        }  
-        if (haeRuutu(ruutu.getX()-1, ruutu.getY()+1).onkoMiinaa()){
+        if (x > 0 && taulukko[x-1][y].onkoMiinaa()){
             miinat++;
         }
-        if (haeRuutu(ruutu.getX(), ruutu.getY()-1).onkoMiinaa()){
+        if (x > 0 && y < this.korkeus-1 && taulukko[x-1][y+1].onkoMiinaa()){
             miinat++;
         }
-        if (haeRuutu(ruutu.getX(), ruutu.getY()+1).onkoMiinaa()){
+        if (y > 0 && taulukko[x][y-1].onkoMiinaa()){
             miinat++;
         }
-        if (haeRuutu(ruutu.getX()+1, ruutu.getY()-1).onkoMiinaa()){
+        if (y < this.korkeus-1 && taulukko[x][y+1].onkoMiinaa()){
             miinat++;
         }
-        if (haeRuutu(ruutu.getX()+1, ruutu.getY()).onkoMiinaa()){
+        if (x < this.leveys-1 && y > 0 && taulukko[x+1][y-1].onkoMiinaa()){
             miinat++;
         }
-        if (haeRuutu(ruutu.getX()+1, ruutu.getY()+1).onkoMiinaa()){
+        if (x < this.leveys-1 && taulukko[x+1][y].onkoMiinaa()){
+            miinat++;
+        }
+        if (x < this.leveys-1 && y < this.korkeus-1 && taulukko[x+1][y+1].onkoMiinaa()){
             miinat++;
         }
         return miinat;
     }
+
+    public void tulosta() {
+        for (int i = 0; i < this.korkeus; i++){
+            for (int j = 0; j < this.leveys; j++){
+                    System.out.print("[" + taulukko[i][j].toString() + "]");
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+        for (int i = 0; i < this.korkeus; i++){
+            for (int j = 0; j < this.leveys; j++){
+                    System.out.print("[" + taulukko[i][j].getStatus() + "]");
+            }
+            System.out.println("");
+        }
+    }
+
+    public int getKorkeus() {
+        return korkeus;
+    }
+
+    public int getLeveys() {
+        return leveys;
+    }
+    
 }

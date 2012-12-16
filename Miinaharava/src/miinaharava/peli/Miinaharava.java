@@ -10,6 +10,8 @@ public class Miinaharava implements ActionListener {
 
     public Miinaharava(Pelilauta lauta) {
         this.lauta = lauta;
+        this.lauta.asetaMiinat();
+        this.lauta.asetaMiinattomat();
     }
 
     @Override
@@ -18,6 +20,12 @@ public class Miinaharava implements ActionListener {
     }
 
     public void start() {
-        this.lauta.asetaMiinat();
+        this.lauta.tulosta();
     }
+
+    public Pelilauta getLauta() {
+        return lauta;
+    }
+    
+    
 }

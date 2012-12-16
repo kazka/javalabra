@@ -4,21 +4,21 @@ package miinaharava.domain;
 public class Ruutu {
     private String status; // vaihtoehdot: kiinni/avattu/merkattu
     private int sisalto; //0 = tyhja, 1-8 = miinojen lkm vieressa, 9 = miina
-    private int x;
-    private int y;    
+//    private int x;
+//    private int y;    
     
-    public Ruutu(int x, int y){
+    public Ruutu(){
         this.status = "kiinni";
-        this.x = x;
-        this.y = y;        
+//        this.x = x;
+//        this.y = y;        
     }
     
     public void setStatus(String status){
         this.status = status;
     }
     
-    public void setMiina(){
-        this.sisalto = 9;
+    public void setSisalto(int luku){
+        this.sisalto = luku;
     }
     
     public boolean onkoMiinaa(){
@@ -28,12 +28,17 @@ public class Ruutu {
         return false;
     }
 
-    public int getX() {
-        return x;
+    public int getSisalto() {
+        return sisalto;
     }
 
-    public int getY() {
-        return y;
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(sisalto);
     }
     
 }
