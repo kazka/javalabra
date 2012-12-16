@@ -44,30 +44,30 @@ public class Pelilauta {
         }
     }
 
-    public int laskeYmparoivatMiinat(int x, int y) {
+    public int laskeYmparoivatMiinat(int rivi, int sarake) {
         int miinat = 0;
-        if (x > 0 && y > 0 && taulukko[x-1][y-1].onkoMiinaa()){
+        if (rivi > 0 && sarake > 0 && taulukko[rivi-1][sarake-1].onkoMiinaa()){
             miinat++;
         }
-        if (x > 0 && taulukko[x-1][y].onkoMiinaa()){
+        if (rivi > 0 && taulukko[rivi-1][sarake].onkoMiinaa()){
             miinat++;
         }
-        if (x > 0 && y < this.korkeus-1 && taulukko[x-1][y+1].onkoMiinaa()){
+        if (rivi > 0 && sarake < this.korkeus-1 && taulukko[rivi-1][sarake+1].onkoMiinaa()){
             miinat++;
         }
-        if (y > 0 && taulukko[x][y-1].onkoMiinaa()){
+        if (sarake > 0 && taulukko[rivi][sarake-1].onkoMiinaa()){
             miinat++;
         }
-        if (y < this.korkeus-1 && taulukko[x][y+1].onkoMiinaa()){
+        if (sarake < this.korkeus-1 && taulukko[rivi][sarake+1].onkoMiinaa()){
             miinat++;
         }
-        if (x < this.leveys-1 && y > 0 && taulukko[x+1][y-1].onkoMiinaa()){
+        if (rivi < this.leveys-1 && sarake > 0 && taulukko[rivi+1][sarake-1].onkoMiinaa()){
             miinat++;
         }
-        if (x < this.leveys-1 && taulukko[x+1][y].onkoMiinaa()){
+        if (rivi < this.leveys-1 && taulukko[rivi+1][sarake].onkoMiinaa()){
             miinat++;
         }
-        if (x < this.leveys-1 && y < this.korkeus-1 && taulukko[x+1][y+1].onkoMiinaa()){
+        if (rivi < this.leveys-1 && sarake < this.korkeus-1 && taulukko[rivi+1][sarake+1].onkoMiinaa()){
             miinat++;
         }
         return miinat;

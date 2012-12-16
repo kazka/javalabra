@@ -8,7 +8,7 @@ import miinaharava.gui.Pelilauta;
 public class Main{
 
     public static void main(String[] args) {
-        Pelilauta pelilauta = new Pelilauta(6, 6, 4);        
+        Pelilauta pelilauta = new Pelilauta(6, 8, 4);        
         
         Miinaharava miinaharava = new Miinaharava(pelilauta);
         
