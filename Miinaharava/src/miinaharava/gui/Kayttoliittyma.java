@@ -20,7 +20,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Miinaharava");
-        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*20, this.harava.getLauta().getKorkeus()*30));
+        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*40, this.harava.getLauta().getKorkeus()*40));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -31,7 +31,7 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-        container.setLayout(new GridLayout(harava.getLauta().getLeveys(), harava.getLauta().getKorkeus()));
+        container.setLayout(new GridLayout(harava.getLauta().getKorkeus(), harava.getLauta().getLeveys()));
         
         for (int i = 0; i < this.harava.getLauta().getKorkeus(); i++){
             for (int j = 0; j < this.harava.getLauta().getLeveys(); j++){

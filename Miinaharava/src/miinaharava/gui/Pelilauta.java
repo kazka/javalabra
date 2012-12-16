@@ -52,25 +52,29 @@ public class Pelilauta {
         if (rivi > 0 && taulukko[rivi-1][sarake].onkoMiinaa()){
             miinat++;
         }
-        if (rivi > 0 && sarake < this.korkeus-1 && taulukko[rivi-1][sarake+1].onkoMiinaa()){
+        if (rivi > 0 && sarake < this.leveys-1 && taulukko[rivi-1][sarake+1].onkoMiinaa()){
             miinat++;
         }
         if (sarake > 0 && taulukko[rivi][sarake-1].onkoMiinaa()){
             miinat++;
         }
-        if (sarake < this.korkeus-1 && taulukko[rivi][sarake+1].onkoMiinaa()){
+        if (sarake < this.leveys-1 && taulukko[rivi][sarake+1].onkoMiinaa()){
             miinat++;
         }
-        if (rivi < this.leveys-1 && sarake > 0 && taulukko[rivi+1][sarake-1].onkoMiinaa()){
+        if (rivi < this.korkeus-1 && sarake > 0 && taulukko[rivi+1][sarake-1].onkoMiinaa()){
             miinat++;
         }
-        if (rivi < this.leveys-1 && taulukko[rivi+1][sarake].onkoMiinaa()){
+        if (rivi < this.korkeus-1 && taulukko[rivi+1][sarake].onkoMiinaa()){
             miinat++;
         }
-        if (rivi < this.leveys-1 && sarake < this.korkeus-1 && taulukko[rivi+1][sarake+1].onkoMiinaa()){
+        if (rivi < this.korkeus-1 && sarake < this.leveys-1 && taulukko[rivi+1][sarake+1].onkoMiinaa()){
             miinat++;
         }
         return miinat;
+    }
+    
+    public void avaaViereisetNollat(int x, int y){
+        
     }
 
     public void tulosta() {

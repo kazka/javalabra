@@ -26,6 +26,10 @@ public class KlikkaustenKuuntelija implements ActionListener {
         } else {
             this.harava.getLauta().getTaulukko()[rivi][sarake].setStatus("avattu");
             this.btn.setText(Integer.toString(this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto()));
+            
+            if (this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto() == 0){
+                this.harava.getLauta().avaaViereisetNollat(sarake, rivi);
+            }
         }
         
         harava.start();
