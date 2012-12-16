@@ -1,7 +1,6 @@
 
 package miinaharava.gui;
 
-import java.util.ArrayList;
 import java.util.Random;
 import miinaharava.domain.Ruutu;
 import miinaharava.peli.Miinaharava;
@@ -39,7 +38,7 @@ public class Pelilauta {
         for (int i = 0; i < this.korkeus; i++){
             for (int j = 0; j < this.leveys; j++){
                 if (!taulukko[i][j].onkoMiinaa()){
-                    taulukko[i][j].setSisalto(laskeYmparoivatMiinat(i, j));
+                    taulukko[i][j].setSisalto(laskeYmparoivatMiinat(i,j));
                 }
             }
         }
@@ -96,6 +95,10 @@ public class Pelilauta {
 
     public int getLeveys() {
         return leveys;
+    }
+
+    public Ruutu[][] getTaulukko() {
+        return taulukko;
     }
     
 }

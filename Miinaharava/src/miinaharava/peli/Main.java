@@ -8,22 +8,12 @@ import miinaharava.gui.Pelilauta;
 public class Main{
 
     public static void main(String[] args) {
-        Pelilauta pelilauta = new Pelilauta(10, 10, 10);        
+        Pelilauta pelilauta = new Pelilauta(6, 6, 4);        
         
         Miinaharava miinaharava = new Miinaharava(pelilauta);
         
         Kayttoliittyma kali = new Kayttoliittyma(miinaharava);
-        SwingUtilities.invokeLater(kali);
-
-        while (kali.getAlusta() == null) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                System.out.println("Piirtoalustaa ei ole vielä luotu.");
-            }
-        }
-
-        miinaharava.setPaivitettava(kali.getAlusta());        
+        SwingUtilities.invokeLater(kali);    
         
         miinaharava.start();
     }

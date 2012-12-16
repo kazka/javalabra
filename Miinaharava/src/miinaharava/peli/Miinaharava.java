@@ -1,10 +1,8 @@
 package miinaharava.peli;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import miinaharava.gui.Pelilauta;
 
-public class Miinaharava implements ActionListener {
+public class Miinaharava {
 
     private Pelilauta lauta;
 
@@ -14,10 +12,6 @@ public class Miinaharava implements ActionListener {
         this.lauta.asetaMiinattomat();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     public void start() {
         this.lauta.tulosta();
