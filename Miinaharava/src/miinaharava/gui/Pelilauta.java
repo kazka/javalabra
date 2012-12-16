@@ -9,11 +9,13 @@ import miinaharava.peli.Miinaharava;
 public class Pelilauta {
     private int leveys;
     private int korkeus;
+    private int miinoja;
     private ArrayList<Ruutu> ruudut;
     
-    public Pelilauta(int leveys, int korkeus) {
+    public Pelilauta(int leveys, int korkeus, int miinoja) {
         this.leveys = leveys;
         this.korkeus = korkeus;
+        this.miinoja = miinoja;
         this.ruudut = new ArrayList<Ruutu>();
     }
     
