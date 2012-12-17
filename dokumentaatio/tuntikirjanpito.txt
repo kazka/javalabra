@@ -1,0 +1,14 @@
+8.12. 1h
+git harjoittelu
+
+15.12. 20min
+aloitus ja aihem‰‰rittely
+
+15.12. 1h
+koodin aloitus, suunnittelu
+
+16.12. 2h
+gui:n asioiden kertaus ja suunnittelu
+
+16.12. 2h
+gui:n eka toteutus
