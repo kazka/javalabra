@@ -75,7 +75,70 @@ public class Pelilauta {
         return miinat;
     }
     
-    public void avaaViereisetNollat(int x, int y){
+    public void avaaViereisetNollat(int sarake, int rivi){
+        // dfs
+        this.taulukko[rivi][sarake].setStatus("avattu");
+        
+        if (rivi > 0){
+            if (taulukko[rivi-1][sarake].getSisalto() == 0 && !taulukko[rivi-1][sarake].getStatus().equals("avattu")){
+                avaaViereisetNollat(sarake, rivi-1);
+            } else {
+                taulukko[rivi-1][sarake].setStatus("avattu");
+            }
+        }        
+        if (sarake > 0){
+            if (taulukko[rivi][sarake-1].getSisalto() == 0 && !taulukko[rivi][sarake-1].getStatus().equals("avattu")){
+                avaaViereisetNollat(sarake-1, rivi);
+            } else {
+                taulukko[rivi][sarake-1].setStatus("avattu");
+            }
+        }
+        if (sarake < this.leveys-1){
+            if (taulukko[rivi][sarake+1].getSisalto() == 0 && !taulukko[rivi][sarake+1].getStatus().equals("avattu")){
+                avaaViereisetNollat(sarake+1, rivi);
+            } else {
+                taulukko[rivi][sarake+1].setStatus("avattu");
+            }
+        }
+        if (rivi < this.korkeus-1){
+            if (taulukko[rivi+1][sarake].getSisalto() == 0 && !taulukko[rivi+1][sarake].getStatus().equals("avattu")){
+                avaaViereisetNollat(sarake, rivi+1);
+            } else {
+                taulukko[rivi+1][sarake].setStatus("avattu");
+            }
+        }
+        // kulmat
+        if (rivi > 0 && sarake > 0){
+            if (taulukko[rivi-1][sarake-1].getSisalto() == 0 && !taulukko[rivi-1][sarake-1].getStatus().equals("avattu")){
+                avaaViereisetNollat(sarake-1, rivi-1);
+            } else {
+                taulukko[rivi-1][sarake-1].setStatus("avattu");
+            }
+        }
+        if (rivi > 0 && sarake < this.leveys-1){
+            if (taulukko[rivi-1][sarake+1].getSisalto() == 0 && !taulukko[rivi-1][sarake+1].getStatus().equals("avattu")){
+                avaaViereisetNollat(sarake+1, rivi-1);
+            } else {
+                taulukko[rivi-1][sarake+1].setStatus("avattu");
+            }
+        }
+        if (rivi < this.korkeus-1 && sarake > 0){
+            if (taulukko[rivi+1][sarake-1].getSisalto() == 0 && !taulukko[rivi+1][sarake-1].getStatus().equals("avattu")){
+                avaaViereisetNollat(sarake-1, rivi+1);
+            } else {
+                taulukko[rivi+1][sarake-1].setStatus("avattu");
+            }
+        }  
+        if (rivi < this.korkeus-1 && sarake < this.leveys-1){
+            if (taulukko[rivi+1][sarake+1].getSisalto() == 0 && !taulukko[rivi+1][sarake+1].getStatus().equals("avattu")){
+                avaaViereisetNollat(sarake+1, rivi+1);
+            } else {
+                taulukko[rivi+1][sarake+1].setStatus("avattu");
+            }
+        }        
+    }
+    
+    public void avaaNollienViereiset(){
         
     }
 

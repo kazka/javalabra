@@ -13,5 +13,5 @@ gui:n asioiden kertaus ja suunnittelu
 16.12. 2h
 gui:n eka toteutus
 
-17.12. 1h
+17.12. 1h30min
 testaus ym
