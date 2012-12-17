@@ -35,4 +35,18 @@ public class PelilautaTest {
          assertEquals(lauta.getKorkeus(), 30);
          assertEquals(lauta.getLeveys(), 20);
      }
+     
+     @Test
+     public void miinojaAsetetaanOikeaMaara() {
+        int lkm = 0;
+        for (int i = 0; i < lauta.getKorkeus(); i++){
+            for (int j = 0; j < lauta.getLeveys(); j++){
+                if (lauta.getTaulukko()[i][j].onkoMiinaa()){
+                    lkm++;
+                }
+            }
+        }
+        assertEquals(lauta.getMiinoja(), lkm);
+     }  
+       
 }

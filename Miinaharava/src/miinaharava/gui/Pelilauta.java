@@ -21,11 +21,13 @@ public class Pelilauta {
                 this.taulukko[i][j] = new Ruutu();
             }
         }
+        asetaMiinat();
+        asetaMiinattomat();
     }
     
     public void asetaMiinat(){
         Random random = new Random();
-        for (int i = 0; i <= this.miinoja; i++){
+        for (int i = 0; i < this.miinoja; i++){
             int randomX = random.nextInt(this.leveys);
             int randomY = random.nextInt(this.korkeus);
                 if (!taulukko[randomY][randomX].onkoMiinaa()){
@@ -92,6 +94,17 @@ public class Pelilauta {
             System.out.println("");
         }
     }
+    
+    public boolean onkoEnsimmainenAvaus(){
+        for (int i = 0; i < this.korkeus; i++){
+            for (int j = 0; j < this.leveys; j++){
+                if (taulukko[i][j].getStatus().equals("avattu")){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     public int getKorkeus() {
         return korkeus;
@@ -103,6 +116,10 @@ public class Pelilauta {
 
     public Ruutu[][] getTaulukko() {
         return taulukko;
+    }
+
+    public int getMiinoja() {
+        return miinoja;
     }
     
 }

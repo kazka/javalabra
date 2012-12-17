@@ -8,8 +8,8 @@ public class Miinaharava {
 
     public Miinaharava(Pelilauta lauta) {
         this.lauta = lauta;
-        this.lauta.asetaMiinat();
-        this.lauta.asetaMiinattomat();
+        //this.lauta.asetaMiinat();
+       // this.lauta.asetaMiinattomat();
     }
 
 
@@ -19,6 +19,10 @@ public class Miinaharava {
 
     public Pelilauta getLauta() {
         return lauta;
+    }
+
+    public void setLauta(Pelilauta lauta) {
+        this.lauta = lauta;
     }
     
     

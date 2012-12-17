@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import miinaharava.peli.Miinaharava;
 
 public class KlikkaustenKuuntelija implements ActionListener {
-    private Miinaharava harava;
+    private Miinaharava harava; //
     private int rivi;
     private int sarake;
     private JButton btn;
@@ -24,6 +24,11 @@ public class KlikkaustenKuuntelija implements ActionListener {
         if (this.harava.getLauta().getTaulukko()[rivi][sarake].getStatus().equals("avattu")){
             //älä tee mitään
         } else {
+            if (this.harava.getLauta().onkoEnsimmainenAvaus() && this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto() == 9){
+                // jos ensimmäinen klikattu oli miina -> generoidaan uusi lauta
+                Pelilauta uusiLauta = new Pelilauta(this.harava.getLauta().getLeveys(), this.harava.getLauta().getKorkeus(), this.harava.getLauta().getMiinoja());
+                this.harava.setLauta(uusiLauta);
+            }
             this.harava.getLauta().getTaulukko()[rivi][sarake].setStatus("avattu");
             this.btn.setText(Integer.toString(this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto()));
             
