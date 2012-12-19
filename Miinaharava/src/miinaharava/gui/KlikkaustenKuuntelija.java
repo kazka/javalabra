@@ -32,10 +32,11 @@ public class KlikkaustenKuuntelija implements ActionListener {
                 }
                 this.harava.setLauta(uusiLauta);
             }
+            
             this.harava.getLauta().getTaulukko()[rivi][sarake].setStatus("avattu");
+            
             if (this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto() == 0){
                 this.harava.getLauta().avaaViereisetNollat(sarake, rivi);
-                this.harava.getLauta().avaaNollienViereiset();
             }
             
             this.btn.setText(Integer.toString(this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto()));

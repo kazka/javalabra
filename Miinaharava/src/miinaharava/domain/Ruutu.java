@@ -4,13 +4,10 @@ package miinaharava.domain;
 public class Ruutu {
     private String status; // vaihtoehdot: kiinni/avattu/merkattu
     private int sisalto; //0 = tyhja, 1-8 = miinojen lkm vieressa, 9 = miina
-//    private int x;
-//    private int y;    
+ 
     
     public Ruutu(){
-        this.status = "kiinni";
-//        this.x = x;
-//        this.y = y;        
+        this.status = "kiinni";      
     }
     
     public void setStatus(String status){

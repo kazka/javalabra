@@ -8,13 +8,14 @@ public class Miinaharava {
 
     public Miinaharava(Pelilauta lauta) {
         this.lauta = lauta;
-        //this.lauta.asetaMiinat();
+       // this.lauta.generoiTaulukko();
+       // this.lauta.asetaMiinat();
        // this.lauta.asetaMiinattomat();
     }
 
 
     public void start() {
-        this.lauta.tulosta();
+        this.lauta.tulosta(); // väliaikainen toiminto
     }
 
     public Pelilauta getLauta() {

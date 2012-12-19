@@ -39,7 +39,15 @@ public class Pelilauta {
         asetaMiinattomat();
     }
 
-    public void generoiTaulukko(int korkeus, int leveys) {
+    public final void generoiTaulukko() {
+        for (int i = 0; i < this.korkeus; i++){
+            for (int j = 0; j < this.leveys; j++){
+                this.taulukko[i][j] = new Ruutu();
+            }
+        }
+    }
+    
+    public final void generoiTaulukko(int korkeus, int leveys) {
         for (int i = 0; i < korkeus; i++){
             for (int j = 0; j < leveys; j++){
                 this.taulukko[i][j] = new Ruutu();
@@ -47,7 +55,7 @@ public class Pelilauta {
         }
     }
     
-    public void asetaMiinat(){
+    public final void asetaMiinat(){
         Random random = new Random();
         for (int i = 0; i < this.miinoja; i++){
             int randomX = random.nextInt(this.leveys);
@@ -58,7 +66,7 @@ public class Pelilauta {
         }
     }
     
-    public void asetaMiinattomat(){
+    public final void asetaMiinattomat(){
         for (int i = 0; i < this.korkeus; i++){
             for (int j = 0; j < this.leveys; j++){
                 if (!taulukko[i][j].onkoMiinaa()){
@@ -101,67 +109,41 @@ public class Pelilauta {
         // dfs
         this.taulukko[rivi][sarake].setStatus("avattu");
         
+        //reunat
         if (rivi > 0){
-            if (taulukko[rivi-1][sarake].getSisalto() == 0 && !taulukko[rivi-1][sarake].getStatus().equals("avattu")){
-                avaaViereisetNollat(sarake, rivi-1);
-            } else {
-                taulukko[rivi-1][sarake].setStatus("avattu");
-            }
+            tarkistaJaAvaa(rivi-1, sarake);
         }        
         if (sarake > 0){
-            if (taulukko[rivi][sarake-1].getSisalto() == 0 && !taulukko[rivi][sarake-1].getStatus().equals("avattu")){
-                avaaViereisetNollat(sarake-1, rivi);
-            } else {
-                taulukko[rivi][sarake-1].setStatus("avattu");
-            }
+            tarkistaJaAvaa(rivi, sarake-1);
         }
         if (sarake < this.leveys-1){
-            if (taulukko[rivi][sarake+1].getSisalto() == 0 && !taulukko[rivi][sarake+1].getStatus().equals("avattu")){
-                avaaViereisetNollat(sarake+1, rivi);
-            } else {
-                taulukko[rivi][sarake+1].setStatus("avattu");
-            }
+            tarkistaJaAvaa(rivi, sarake+1);
         }
         if (rivi < this.korkeus-1){
-            if (taulukko[rivi+1][sarake].getSisalto() == 0 && !taulukko[rivi+1][sarake].getStatus().equals("avattu")){
-                avaaViereisetNollat(sarake, rivi+1);
-            } else {
-                taulukko[rivi+1][sarake].setStatus("avattu");
-            }
+            tarkistaJaAvaa(rivi+1, sarake);
         }
         // kulmat
         if (rivi > 0 && sarake > 0){
-            if (taulukko[rivi-1][sarake-1].getSisalto() == 0 && !taulukko[rivi-1][sarake-1].getStatus().equals("avattu")){
-                avaaViereisetNollat(sarake-1, rivi-1);
-            } else {
-                taulukko[rivi-1][sarake-1].setStatus("avattu");
-            }
+            tarkistaJaAvaa(rivi-1, sarake-1);
         }
         if (rivi > 0 && sarake < this.leveys-1){
-            if (taulukko[rivi-1][sarake+1].getSisalto() == 0 && !taulukko[rivi-1][sarake+1].getStatus().equals("avattu")){
-                avaaViereisetNollat(sarake+1, rivi-1);
-            } else {
-                taulukko[rivi-1][sarake+1].setStatus("avattu");
-            }
+            tarkistaJaAvaa(rivi-1, sarake+1);
         }
         if (rivi < this.korkeus-1 && sarake > 0){
-            if (taulukko[rivi+1][sarake-1].getSisalto() == 0 && !taulukko[rivi+1][sarake-1].getStatus().equals("avattu")){
-                avaaViereisetNollat(sarake-1, rivi+1);
-            } else {
-                taulukko[rivi+1][sarake-1].setStatus("avattu");
-            }
+            tarkistaJaAvaa(rivi+1, sarake-1);
         }  
         if (rivi < this.korkeus-1 && sarake < this.leveys-1){
-            if (taulukko[rivi+1][sarake+1].getSisalto() == 0 && !taulukko[rivi+1][sarake+1].getStatus().equals("avattu")){
-                avaaViereisetNollat(sarake+1, rivi+1);
-            } else {
-                taulukko[rivi+1][sarake+1].setStatus("avattu");
-            }
+            tarkistaJaAvaa(rivi+1, sarake+1);
         }        
     }
     
-    public void avaaNollienViereiset(){
-        
+    // tarkistaa onko ruutu alueella ja ei avattu
+    public void tarkistaJaAvaa(int rivi, int sarake){
+            if (this.taulukko[rivi][sarake].getSisalto() == 0 && !this.taulukko[rivi][sarake].getStatus().equals("avattu")){
+                avaaViereisetNollat(sarake, rivi);
+            } else {
+                this.taulukko[rivi][sarake].setStatus("avattu");
+            }
     }
 
     public void tulosta() {
