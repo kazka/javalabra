@@ -12,17 +12,39 @@ public class Pelilauta {
     private Ruutu[][] taulukko;
     
     public Pelilauta(int leveys, int korkeus, int miinoja) {
-        this.leveys = leveys;
-        this.korkeus = korkeus;
-        this.miinoja = miinoja;
-        this.taulukko = new Ruutu [korkeus][leveys];
+        if (leveys < 5){
+            this.leveys = 5;
+        } else if (leveys > 300){
+            this.leveys = 300;
+        } else {
+            this.leveys = leveys;
+        }
+        if (korkeus < 5){
+            this.korkeus = 5;
+        } else if (korkeus > 300){
+            this.korkeus = 300;
+        } else {
+            this.korkeus = korkeus;
+        }
+        if (miinoja < 1){
+            this.miinoja = 1;
+        } else if (miinoja > this.leveys * this.korkeus / 2){
+            this.miinoja = this.leveys * this.korkeus / 2;  // miinoja korkeintaan puolet ruuduista
+        } else {
+            this.miinoja = miinoja;
+        }
+        this.taulukko = new Ruutu[this.korkeus][this.leveys];
+        generoiTaulukko(this.korkeus, this.leveys);
+        asetaMiinat();
+        asetaMiinattomat();
+    }
+
+    public void generoiTaulukko(int korkeus, int leveys) {
         for (int i = 0; i < korkeus; i++){
             for (int j = 0; j < leveys; j++){
                 this.taulukko[i][j] = new Ruutu();
             }
         }
-        asetaMiinat();
-        asetaMiinattomat();
     }
     
     public void asetaMiinat(){
@@ -183,6 +205,10 @@ public class Pelilauta {
 
     public int getMiinoja() {
         return miinoja;
+    }
+
+    public void setTaulukko(Ruutu[][] taulukko) {
+        this.taulukko = taulukko;
     }
     
 }
