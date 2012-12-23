@@ -1,6 +1,7 @@
 
 package miinaharava.gui;
 
+import java.util.ArrayList;
 import java.util.Random;
 import miinaharava.domain.Ruutu;
 import miinaharava.peli.Miinaharava;
@@ -105,44 +106,47 @@ public class Pelilauta {
         return miinat;
     }
     
-    public void avaaViereisetNollat(int sarake, int rivi){
+    public ArrayList<Ruutu> avaaViereisetNollat(int sarake, int rivi, ArrayList<Ruutu> ruudut){
         // dfs
         this.taulukko[rivi][sarake].setStatus("avattu");
+        ruudut.add(this.taulukko[rivi][sarake]);
         
         //reunat
         if (rivi > 0){
-            tarkistaJaAvaa(rivi-1, sarake);
+            tarkistaJaAvaa(rivi-1, sarake, ruudut);
         }        
         if (sarake > 0){
-            tarkistaJaAvaa(rivi, sarake-1);
+            tarkistaJaAvaa(rivi, sarake-1, ruudut);
         }
         if (sarake < this.leveys-1){
-            tarkistaJaAvaa(rivi, sarake+1);
+            tarkistaJaAvaa(rivi, sarake+1, ruudut);
         }
         if (rivi < this.korkeus-1){
-            tarkistaJaAvaa(rivi+1, sarake);
+            tarkistaJaAvaa(rivi+1, sarake, ruudut);
         }
         // kulmat
         if (rivi > 0 && sarake > 0){
-            tarkistaJaAvaa(rivi-1, sarake-1);
+            tarkistaJaAvaa(rivi-1, sarake-1, ruudut);
         }
         if (rivi > 0 && sarake < this.leveys-1){
-            tarkistaJaAvaa(rivi-1, sarake+1);
+            tarkistaJaAvaa(rivi-1, sarake+1, ruudut);
         }
         if (rivi < this.korkeus-1 && sarake > 0){
-            tarkistaJaAvaa(rivi+1, sarake-1);
+            tarkistaJaAvaa(rivi+1, sarake-1, ruudut);
         }  
         if (rivi < this.korkeus-1 && sarake < this.leveys-1){
-            tarkistaJaAvaa(rivi+1, sarake+1);
-        }        
+            tarkistaJaAvaa(rivi+1, sarake+1, ruudut);
+        }   
+        return ruudut;
     }
     
     // tarkistaa onko ruutu alueella ja ei avattu
-    public void tarkistaJaAvaa(int rivi, int sarake){
+    public void tarkistaJaAvaa(int rivi, int sarake, ArrayList<Ruutu> ruudut){
             if (this.taulukko[rivi][sarake].getSisalto() == 0 && !this.taulukko[rivi][sarake].getStatus().equals("avattu")){
-                avaaViereisetNollat(sarake, rivi);
+                avaaViereisetNollat(sarake, rivi, ruudut);
             } else {
                 this.taulukko[rivi][sarake].setStatus("avattu");
+                ruudut.add(this.taulukko[rivi][sarake]);
             }
     }
 

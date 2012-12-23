@@ -1,10 +1,12 @@
 
 package miinaharava.domain;
 
+import javax.swing.JButton;
+
 public class Ruutu {
     private String status; // vaihtoehdot: kiinni/avattu/merkattu
     private int sisalto; //0 = tyhja, 1-8 = miinojen lkm vieressa, 9 = miina
- 
+    private JButton btn;
     
     public Ruutu(){
         this.status = "kiinni";      
@@ -36,6 +38,14 @@ public class Ruutu {
     @Override
     public String toString() {
         return Integer.toString(sisalto);
+    }
+
+    public JButton getBtn() {
+        return btn;
+    }
+
+    public void setBtn(JButton btn) {
+        this.btn = btn;
     }
     
 }

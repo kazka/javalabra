@@ -3,7 +3,10 @@ package miinaharava.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import miinaharava.domain.Ruutu;
 import miinaharava.peli.Miinaharava;
 
 public class KlikkaustenKuuntelija implements ActionListener {
@@ -36,14 +39,24 @@ public class KlikkaustenKuuntelija implements ActionListener {
             this.harava.getLauta().getTaulukko()[rivi][sarake].setStatus("avattu");
             
             if (this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto() == 0){
-                this.harava.getLauta().avaaViereisetNollat(sarake, rivi);
+                ArrayList<Ruutu> ruudut = this.harava.getLauta().avaaViereisetNollat(sarake, rivi, new ArrayList<Ruutu>());
+                for (Ruutu ruutu : ruudut){
+                    ImageIcon kuvake = new ImageIcon("materiaali/" + ruutu.getSisalto() + ".jpg");
+                    ruutu.getBtn().setIcon(kuvake);
+                }
             }
             
-            this.btn.setText(Integer.toString(this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto()));
+            //this.btn.setText(Integer.toString(this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto()));
+            vaihdaKuvake(this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto());
             
         }
         
         harava.start();
+    }
+
+    public void vaihdaKuvake(int sisalto) {
+        ImageIcon kuvake = new ImageIcon("materiaali/" + sisalto + ".jpg");
+        this.btn.setIcon(kuvake);
     }
     
 }

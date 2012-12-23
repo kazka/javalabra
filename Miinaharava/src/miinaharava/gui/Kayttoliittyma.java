@@ -4,6 +4,7 @@ package miinaharava.gui;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -20,7 +21,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Miinaharava");
-        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*80, this.harava.getLauta().getKorkeus()*80));
+        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*22, this.harava.getLauta().getKorkeus()*25));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,8 +36,13 @@ public class Kayttoliittyma implements Runnable {
         
         for (int i = 0; i < this.harava.getLauta().getKorkeus(); i++){
             for (int j = 0; j < this.harava.getLauta().getLeveys(); j++){
-                JButton ruutuBtn = new JButton("");
+                ImageIcon kuvake = new ImageIcon("materiaali/10.jpg");
+                JButton ruutuBtn = new JButton(kuvake);
+                ruutuBtn.setBorderPainted(false);
+                ruutuBtn.setContentAreaFilled(false);
+                ruutuBtn.setRolloverEnabled(false);
                 ruutuBtn.addActionListener(new KlikkaustenKuuntelija(this.harava,j,i, ruutuBtn));
+                this.harava.getLauta().getTaulukko()[i][j].setBtn(ruutuBtn);
                 container.add(ruutuBtn);
             }
         }

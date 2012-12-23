@@ -15,3 +15,7 @@ gui:n eka toteutus
 
 17.12. 1h30min
 testaus ym
+
+19.12.
+1h 30min
+testejä, luokkakaavio
