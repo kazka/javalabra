@@ -21,7 +21,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Miinaharava");
-        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*22, this.harava.getLauta().getKorkeus()*25));
+        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*21, this.harava.getLauta().getKorkeus()*24));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
