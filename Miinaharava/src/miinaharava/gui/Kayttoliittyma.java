@@ -52,4 +52,8 @@ public class Kayttoliittyma implements Runnable {
         return frame;
     }
 
+    public Miinaharava getHarava() {
+        return harava;
+    }
+
 }

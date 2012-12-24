@@ -26,5 +26,16 @@ public class Miinaharava {
         this.lauta = lauta;
     }
     
+    public void tarkistaVoitto() {
+        if (this.lauta.onkoVoitettu()){
+            this.lauta.avaaKaikki();
+            System.out.println("voitit");
+        }
+    }
+
+    public void havio() {
+        this.lauta.avaaKaikki();
+        System.out.println("hävisit");
+    }
     
 }

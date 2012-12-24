@@ -196,5 +196,25 @@ public class Pelilauta {
     public void setTaulukko(Ruutu[][] taulukko) {
         this.taulukko = taulukko;
     }
+
+    public void avaaKaikki() {
+//        for (int i = 0; i < this.korkeus; i++){
+//            for (int j = 0; j < this.leveys; j++){
+//                this.taulukko[i][j].setStatus("avattu");
+//            }
+//        }
+    }
+
+    public boolean onkoVoitettu() {
+        for (int i = 0; i < this.korkeus; i++){
+            for (int j = 0; j < this.leveys; j++){
+                if (this.taulukko[i][j].getStatus().equals("kiinni") && this.taulukko[i][j].getSisalto() != 9){
+                   return false;
+                }
+            }
+        }
+        return true;
+    }
+
     
 }

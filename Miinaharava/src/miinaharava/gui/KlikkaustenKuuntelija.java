@@ -36,6 +36,12 @@ public class KlikkaustenKuuntelija implements ActionListener {
                 this.harava.setLauta(uusiLauta);
             }
             
+            if (this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto() == 9){
+                vaihdaKuvake(9);
+                this.harava.havio();
+                return;
+            }
+            
             this.harava.getLauta().getTaulukko()[rivi][sarake].setStatus("avattu");
             
             if (this.harava.getLauta().getTaulukko()[rivi][sarake].getSisalto() == 0){
@@ -51,7 +57,8 @@ public class KlikkaustenKuuntelija implements ActionListener {
             
         }
         
-        harava.start();
+        this.harava.start();
+        this.harava.tarkistaVoitto();
     }
 
     public void vaihdaKuvake(int sisalto) {
