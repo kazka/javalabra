@@ -21,3 +21,6 @@ testejä, luokkakaavio
 
 23.12. 1h
 jpg kuvakkeiden lisäys
+
+24.12. 1h
+voiton ja häviön toteutus

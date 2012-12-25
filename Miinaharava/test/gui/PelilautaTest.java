@@ -147,4 +147,6 @@ public class PelilautaTest {
 
         assertEquals(1, lauta.laskeYmparoivatMiinat(0,0));
     }     
+    
+    //voitettaessaOikeaMaaraRuutujaAvattu
 }

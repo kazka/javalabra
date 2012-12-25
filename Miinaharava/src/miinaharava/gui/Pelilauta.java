@@ -3,6 +3,7 @@ package miinaharava.gui;
 
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.ImageIcon;
 import miinaharava.domain.Ruutu;
 import miinaharava.peli.Miinaharava;
 
@@ -198,11 +199,15 @@ public class Pelilauta {
     }
 
     public void avaaKaikki() {
-//        for (int i = 0; i < this.korkeus; i++){
-//            for (int j = 0; j < this.leveys; j++){
-//                this.taulukko[i][j].setStatus("avattu");
-//            }
-//        }
+        for (int i = 0; i < this.korkeus; i++){
+            for (int j = 0; j < this.leveys; j++){
+                if (!this.taulukko[i][j].getStatus().equals("avattu")){
+                    this.taulukko[i][j].setStatus("avattu");
+                    ImageIcon kuvake = new ImageIcon("materiaali/" + this.taulukko[i][j].getSisalto() + ".jpg");
+                    this.taulukko[i][j].getBtn().setIcon(kuvake);
+                }
+            }
+        }
     }
 
     public boolean onkoVoitettu() {
