@@ -24,3 +24,6 @@ jpg kuvakkeiden lisäys
 
 24.12. 1h
 voiton ja häviön toteutus
+
+26.12. 30min
+suunnittelu
