@@ -1,13 +1,11 @@
 
 package miinaharava.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 import miinaharava.peli.Miinaharava;
 
 public class Kayttoliittyma implements Runnable {
@@ -21,7 +19,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Miinaharava");
-        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*21, this.harava.getLauta().getKorkeus()*24));
+        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*21, this.harava.getLauta().getKorkeus()*27));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,7 +30,22 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-        container.setLayout(new GridLayout(harava.getLauta().getKorkeus(), harava.getLauta().getLeveys()));
+        container.setLayout(new BorderLayout());
+        container.add(getGrid(), BorderLayout.CENTER);
+        container.add(this.harava.getKello().getLabel(), BorderLayout.NORTH);
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public Miinaharava getHarava() {
+        return harava;
+    }
+    
+    private JComponent getGrid(){
+        JPanel sisempi = new JPanel();
+        sisempi.setLayout(new GridLayout(harava.getLauta().getKorkeus(), harava.getLauta().getLeveys()));
         
         for (int i = 0; i < this.harava.getLauta().getKorkeus(); i++){
             for (int j = 0; j < this.harava.getLauta().getLeveys(); j++){
@@ -43,17 +56,11 @@ public class Kayttoliittyma implements Runnable {
                 ruutuBtn.setRolloverEnabled(false);
                 ruutuBtn.addActionListener(new KlikkaustenKuuntelija(this.harava,j,i, ruutuBtn));
                 this.harava.getLauta().getTaulukko()[i][j].setBtn(ruutuBtn);
-                container.add(ruutuBtn);
+                sisempi.add(ruutuBtn);
             }
         }
-    }
-
-    public JFrame getFrame() {
-        return frame;
-    }
-
-    public Miinaharava getHarava() {
-        return harava;
+        
+        return sisempi;
     }
 
 }

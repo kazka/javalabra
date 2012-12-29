@@ -15,6 +15,6 @@ public class Main{
         Kayttoliittyma kali = new Kayttoliittyma(miinaharava);
         SwingUtilities.invokeLater(kali);    
         
-        miinaharava.start();
+        miinaharava.uusiPeli();
     }
 }

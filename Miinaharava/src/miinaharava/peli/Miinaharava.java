@@ -1,24 +1,28 @@
 package miinaharava.peli;
 
+import java.util.Timer;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import miinaharava.gui.Kello;
 import miinaharava.gui.Pelilauta;
 
 public class Miinaharava {
 
     private Pelilauta lauta;
-    private long alkuaika;
+    private Timer timer;
+    private Kello kello;
 
     public Miinaharava(Pelilauta lauta) {
         this.lauta = lauta;
-       // this.lauta.generoiTaulukko();
-       // this.lauta.asetaMiinat();
-       // this.lauta.asetaMiinattomat();
-        this.alkuaika = System.currentTimeMillis();
+        this.timer = new Timer();
+        this.kello = new Kello(new JLabel());
+        timer.schedule(kello, 0, 1000);
+
     }
 
-
-    public void start() {
-        this.lauta.tulosta(); // väliaikainen toiminto  
+    public void uusiPeli() {
+        //naytaAsetukset();
+        this.lauta.tulosta(); // väliaikainen toiminto tekstiversiolle
     }
 
     public Pelilauta getLauta() {
@@ -29,17 +33,29 @@ public class Miinaharava {
         this.lauta = lauta;
     }
     
+    // tarkistaa onko peli voitettu, jos on niin avaa kaikki ruudut ja laskee pelaamiseen kuluneen ajan sekä näyttää voittoviestin
     public void tarkistaVoitto() {
         if (this.lauta.onkoVoitettu()){
             this.lauta.avaaKaikki();
-            long loppuaika = (System.currentTimeMillis() - this.alkuaika)/1000;
+            int loppuaika = this.kello.getAikanyt();
+            this.timer.cancel();
             JOptionPane.showMessageDialog(null, ":> voitit\naikasi: " + loppuaika + " sek");
         }
     }
 
+    // metodi jota kutsutaan kun pelaaja osuu miinaan. avaa kaikki ruudut ja näyttää häviöviestin
     public void havio() {
         this.lauta.avaaKaikki();
-            JOptionPane.showMessageDialog(null, ":< hävisit");
+        this.timer.cancel();
+        JOptionPane.showMessageDialog(null, ":< hävisit");
+    }
+
+    public Kello getKello() {
+        return kello;
+    }
+
+    public Timer getTimer() {
+        return timer;
     }
     
 }

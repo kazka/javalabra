@@ -10,7 +10,7 @@ import miinaharava.domain.Ruutu;
 import miinaharava.peli.Miinaharava;
 
 public class KlikkaustenKuuntelija implements ActionListener {
-    private Miinaharava harava; //
+    private Miinaharava harava;
     private int rivi;
     private int sarake;
     private JButton btn;
@@ -57,10 +57,11 @@ public class KlikkaustenKuuntelija implements ActionListener {
             
         }
         
-        this.harava.start();
+        this.harava.getLauta().tulosta();
         this.harava.tarkistaVoitto();
     }
 
+    //vaihtaa jpg kuvakkeen vastaamaan oikeaa sisaltöä. 0.jpg = tyhjä, 1-8.jpg = miinojen määrän mukainen kuvake, 9.jpg = miina, 10.jpg = suljettu ruutu,
     public void vaihdaKuvake(int sisalto) {
         ImageIcon kuvake = new ImageIcon("materiaali/" + sisalto + ".jpg");
         this.btn.setIcon(kuvake);

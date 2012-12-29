@@ -20,6 +20,7 @@ public class Ruutu {
         this.sisalto = luku;
     }
     
+    // palauttaa true jos ruudussa on miina
     public boolean onkoMiinaa(){
         if (this.sisalto == 9){
             return true;

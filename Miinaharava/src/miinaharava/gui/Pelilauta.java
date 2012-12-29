@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import miinaharava.domain.Ruutu;
-import miinaharava.peli.Miinaharava;
 
 public class Pelilauta {
     private int leveys;
@@ -41,6 +40,7 @@ public class Pelilauta {
         asetaMiinattomat();
     }
 
+    // generoi taulukon eli asettaa joka soluun uuden ruudun
     public final void generoiTaulukko() {
         for (int i = 0; i < this.korkeus; i++){
             for (int j = 0; j < this.leveys; j++){
@@ -49,6 +49,7 @@ public class Pelilauta {
         }
     }
     
+    // generoi tietyn kokoisen taulukon (käytetään testeissä)
     public final void generoiTaulukko(int korkeus, int leveys) {
         for (int i = 0; i < korkeus; i++){
             for (int j = 0; j < leveys; j++){
@@ -57,6 +58,7 @@ public class Pelilauta {
         }
     }
     
+    // asetetaan oikea määrä miinoja sattumanvaraisiin ruutuihin
     public final void asetaMiinat(){
         Random random = new Random();
         for (int i = 0; i < this.miinoja; i++){
@@ -68,6 +70,7 @@ public class Pelilauta {
         }
     }
     
+    // lasketaan miinattomiin ruutuihin luku, kuinka monessa viereisessä ruudussa on miina
     public final void asetaMiinattomat(){
         for (int i = 0; i < this.korkeus; i++){
             for (int j = 0; j < this.leveys; j++){
@@ -78,6 +81,7 @@ public class Pelilauta {
         }
     }
 
+    // laskee tietyssä solussa olevalle ruudulle ympäröivien miinojen määrän
     public int laskeYmparoivatMiinat(int rivi, int sarake) {
         int miinat = 0;
         if (rivi > 0 && sarake > 0 && taulukko[rivi-1][sarake-1].onkoMiinaa()){
@@ -107,8 +111,9 @@ public class Pelilauta {
         return miinat;
     }
     
+    // kun avatussa ruudussa on luku 0, lasketaan syvyyssuuntaisella läpikäynnillä kaikki viereiset ruudut 
+    // joissa on myös luku 0 sekä lähimmät joissa on jokin muu luku, ja lisätään nämä ruudut ArrayListiin
     public ArrayList<Ruutu> avaaViereisetNollat(int sarake, int rivi, ArrayList<Ruutu> ruudut){
-        // dfs
         this.taulukko[rivi][sarake].setStatus("avattu");
         ruudut.add(this.taulukko[rivi][sarake]);
         
@@ -141,7 +146,7 @@ public class Pelilauta {
         return ruudut;
     }
     
-    // tarkistaa onko ruutu alueella ja ei avattu
+    // tarkistaa onko ruutu pelilaudan alueella ja ei avattu
     public void tarkistaJaAvaa(int rivi, int sarake, ArrayList<Ruutu> ruudut){
             if (this.taulukko[rivi][sarake].getSisalto() == 0 && !this.taulukko[rivi][sarake].getStatus().equals("avattu")){
                 avaaViereisetNollat(sarake, rivi, ruudut);
@@ -167,6 +172,7 @@ public class Pelilauta {
         }
     }
     
+    // tarkistaa onko ruutu ensimmäinen joka avattiin
     public boolean onkoEnsimmainenAvaus(){
         for (int i = 0; i < this.korkeus; i++){
             for (int j = 0; j < this.leveys; j++){
@@ -198,6 +204,7 @@ public class Pelilauta {
         this.taulukko = taulukko;
     }
 
+    // lopussa avataan kaikki ruudut joita ei vielä ollut avattu ja vaihtaa niille oikeat jpg-kuvakkeet
     public void avaaKaikki() {
         for (int i = 0; i < this.korkeus; i++){
             for (int j = 0; j < this.leveys; j++){
@@ -210,6 +217,7 @@ public class Pelilauta {
         }
     }
 
+    // tarkistaa onko peli voitettu, eli onko kaikki paitsi miinoja sisältävät ruudut avattu
     public boolean onkoVoitettu() {
         for (int i = 0; i < this.korkeus; i++){
             for (int j = 0; j < this.leveys; j++){

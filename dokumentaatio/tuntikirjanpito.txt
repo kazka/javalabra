@@ -27,3 +27,6 @@ voiton ja häviön toteutus
 
 26.12. 30min
 suunnittelu
+
+29.12. 1h
+kellon lisäys
