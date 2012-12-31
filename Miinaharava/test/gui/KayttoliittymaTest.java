@@ -24,7 +24,7 @@ public class KayttoliittymaTest {
     
     @Before
     public void setUp() {
-        kali = new Kayttoliittyma(new Miinaharava(new Pelilauta(10, 10, 20)));
+        kali = new Kayttoliittyma(new Miinaharava());
     }
     
     @After

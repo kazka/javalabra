@@ -12,8 +12,8 @@ public class Miinaharava {
     private Timer timer;
     private Kello kello;
 
-    public Miinaharava(Pelilauta lauta) {
-        this.lauta = lauta;
+    public Miinaharava() {
+        this.lauta = new Pelilauta(9,9,10);   
         this.timer = new Timer();
         this.kello = new Kello(new JLabel());
         timer.schedule(kello, 0, 1000);
