@@ -148,5 +148,63 @@ public class PelilautaTest {
         assertEquals(1, lauta.laskeYmparoivatMiinat(0,0));
     }     
     
+    @Test
+    public void onkoEnsimmainenAvausPalauttaaFalseJosJotainJoAvattu() {
+        lauta.getTaulukko()[1][1].setStatus("avattu");
+        boolean kiinni = true;
+        for (int i = 0; i < lauta.getKorkeus(); i++) {
+            for (int j = 0; j < lauta.getLeveys(); j++) {
+                if (!lauta.getTaulukko()[i][j].getStatus().equals("kiinni")) {
+                    kiinni = false;
+                }
+            }
+        }
+        assertFalse(kiinni);
+    }
+    
+    @Test
+    public void onkoEnsimmainenAvausPalauttaaFalseJosEnsimmainenKulmaruutuAvattu() {
+        lauta.getTaulukko()[0][0].setStatus("avattu");
+        boolean kiinni = true;
+        for (int i = 0; i < lauta.getKorkeus(); i++) {
+            for (int j = 0; j < lauta.getLeveys(); j++) {
+                if (!lauta.getTaulukko()[i][j].getStatus().equals("kiinni")) {
+                    kiinni = false;
+                }
+            }
+        }
+        assertFalse(kiinni);
+    }    
+    
+    @Test
+    public void onkoEnsimmainenAvausPalauttaaFalseJosViimeinenKulmaruutuAvattu() {
+        lauta.getTaulukko()[29][19].setStatus("avattu");
+        boolean kiinni = true;
+        for (int i = 0; i < lauta.getKorkeus(); i++) {
+            for (int j = 0; j < lauta.getLeveys(); j++) {
+                if (!lauta.getTaulukko()[i][j].getStatus().equals("kiinni")) {
+                    kiinni = false;
+                }
+            }
+        }
+        assertFalse(kiinni);
+    }
+    
+    @Test
+    public void avaaKaikkiKutsunJalkeenMikaanRuutuEiOleKiinni() {
+        lauta.getTaulukko()[0][0].setStatus("merkattu");
+        lauta.getTaulukko()[29][19].setStatus("merkattu");
+        lauta.avaaKaikki();
+        boolean kiinni = false;
+        for (int i = 0; i < lauta.getKorkeus(); i++) {
+            for (int j = 0; j < lauta.getLeveys(); j++) {
+                if (lauta.getTaulukko()[i][j].getStatus().equals("kiinni")) {
+                    kiinni = true;
+                }
+            }
+        }
+        assertFalse(kiinni);
+    }
+    
     //voitettaessaOikeaMaaraRuutujaAvattu
 }

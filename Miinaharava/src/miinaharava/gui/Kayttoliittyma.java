@@ -54,7 +54,7 @@ public class Kayttoliittyma implements Runnable {
                 ruutuBtn.setBorderPainted(false);
                 ruutuBtn.setContentAreaFilled(false);
                 ruutuBtn.setRolloverEnabled(false);
-                ruutuBtn.addMouseListener(new KlikkaustenKuuntelija(this.harava,j,i, ruutuBtn));
+                ruutuBtn.addMouseListener(new KlikkaustenKuuntelija(this.harava, j, i, ruutuBtn, this));
                 this.harava.getLauta().getTaulukko()[i][j].setBtn(ruutuBtn);
                 sisempi.add(ruutuBtn);
             }

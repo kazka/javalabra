@@ -16,12 +16,14 @@ public class KlikkaustenKuuntelija implements MouseListener {
     private int rivi;
     private int sarake;
     private JButton btn;
+    private Kayttoliittyma kali;
 
-    public KlikkaustenKuuntelija(Miinaharava harava, int x, int y, JButton btn) {
+    public KlikkaustenKuuntelija(Miinaharava harava, int x, int y, JButton btn, Kayttoliittyma kali) {
         this.rivi = y;
         this.sarake = x;
         this.harava = harava;
         this.btn = btn;
+        this.kali = kali;
     }
 
     @Override

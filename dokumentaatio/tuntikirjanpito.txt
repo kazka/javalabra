@@ -30,3 +30,6 @@ suunnittelu
 
 29.12. 1h
 kellon lisäys
+
+31.12. 30min
+merkkaustoiminnon lisäys
