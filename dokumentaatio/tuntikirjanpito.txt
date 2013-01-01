@@ -33,3 +33,6 @@ kellon lisäys
 
 31.12. 30min
 merkkaustoiminnon lisäys
+
+1.1. 3h
+testaus, bugien korjaus, asetusruudun määrittely

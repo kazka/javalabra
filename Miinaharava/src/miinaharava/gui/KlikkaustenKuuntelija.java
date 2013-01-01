@@ -32,33 +32,32 @@ public class KlikkaustenKuuntelija implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (!this.ruutu.getStatus().equals("avattu")) {
             if (e.getButton() == MouseEvent.BUTTON3) {
-                ruutu.merkkaa();
-            } else if (!ruutu.getStatus().equals("merkattu")) {
-                if (this.harava.getLauta().onkoEnsimmainenAvaus() && ruutu.getSisalto() == 9) { //korjaa
+                this.ruutu.merkkaa();
+            } else if (!this.ruutu.getStatus().equals("merkattu")) {
+                if (this.harava.getLauta().onkoEnsimmainenAvaus() && this.ruutu.getSisalto() == 9) {
                     // jos ensimmäinen klikattu oli miina -> asetetaan miinat uudestaan
-                    while (ruutu.getSisalto() == 9) {
+                    while (this.ruutu.getSisalto() == 9) {
                         this.harava.getLauta().generoiUusiLauta();
                     }
-
                 }
 
-                if (ruutu.getSisalto() == 9) {
-                    ruutu.vaihdaKuvake(9);
+                if (this.ruutu.getSisalto() == 9) {
+                    this.ruutu.vaihdaKuvake(9);
                     this.harava.havio();
                     return;
                 }
 
-                ruutu.setStatus("avattu");
+                this.ruutu.setStatus("avattu");
 
-                if (ruutu.getSisalto() == 0) {
-                    ArrayList<Ruutu> ruudut = this.harava.getLauta().avaaViereisetNollat(this.ruutu.getX(), this.ruutu.getY(), new ArrayList<Ruutu>()); //korjaa
+                if (this.ruutu.getSisalto() == 0) {
+                    ArrayList<Ruutu> ruudut = this.harava.getLauta().avaaViereisetNollat(this.ruutu.getX(), this.ruutu.getY(), new ArrayList<Ruutu>());
                     for (Ruutu ruutuTaulukossa : ruudut) {
                         ImageIcon kuvake = new ImageIcon("materiaali/" + ruutuTaulukossa.getSisalto() + ".jpg");
                         ruutuTaulukossa.getBtn().setIcon(kuvake);
                     }
                 }
 
-                ruutu.vaihdaKuvake(ruutu.getSisalto());
+                this.ruutu.vaihdaKuvake(this.ruutu.getSisalto());
             }
         }
 

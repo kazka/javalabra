@@ -10,9 +10,7 @@ public class Main{
     public static void main(String[] args) {
         Miinaharava miinaharava = new Miinaharava();
         
-        Kayttoliittyma kali = new Kayttoliittyma(miinaharava);
-        SwingUtilities.invokeLater(kali);    
-        
         miinaharava.uusiPeli();
+          
     }
 }

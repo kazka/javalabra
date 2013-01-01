@@ -33,6 +33,9 @@ public class Kayttoliittyma implements Runnable {
         container.setLayout(new BorderLayout());
         container.add(getGrid(), BorderLayout.CENTER);
         container.add(this.harava.getKello().getLabel(), BorderLayout.NORTH);
+        JButton uusipeliBtn = new JButton("uusi peli");
+        uusipeliBtn.addActionListener(new UusipeliNappulanKuuntelija(this.harava, this.frame));
+        container.add(uusipeliBtn, BorderLayout.SOUTH);
     }
 
     public JFrame getFrame() {

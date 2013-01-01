@@ -3,6 +3,9 @@ package miinaharava.peli;
 import java.util.Timer;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import miinaharava.gui.Asetukset;
+import miinaharava.gui.Kayttoliittyma;
 import miinaharava.gui.Kello;
 import miinaharava.gui.Pelilauta;
 
@@ -13,16 +16,16 @@ public class Miinaharava {
     private Kello kello;
 
     public Miinaharava() {
-        this.lauta = new Pelilauta(9,9,10);   
+        //this.lauta = new Pelilauta(9,9,10);   
         this.timer = new Timer();
         this.kello = new Kello(new JLabel());
         timer.schedule(kello, 0, 1000);
-
     }
 
     public void uusiPeli() {
-        //naytaAsetukset();
-        this.lauta.tulosta(); // väliaikainen toiminto tekstiversiolle
+        Asetukset asetukset = new Asetukset(this);
+        SwingUtilities.invokeLater(asetukset);  
+
     }
 
     public Pelilauta getLauta() {
@@ -56,6 +59,21 @@ public class Miinaharava {
 
     public Timer getTimer() {
         return timer;
+    }
+
+    public void luoPelilauta(String valittu) {
+        switch (valittu) {
+            case "pieni":
+                this.lauta = new Pelilauta(10, 10, 12);
+                break;
+            case "keskikoko":
+                this.lauta = new Pelilauta(20, 15, 40);
+                break;
+            case "iso":
+                this.lauta = new Pelilauta(35, 20, 110);
+                break;
+        }
+        this.lauta.tulosta(); // väliaikainen toiminto tekstiversiolle        
     }
     
 }
