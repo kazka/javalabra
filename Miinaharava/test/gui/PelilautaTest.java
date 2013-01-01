@@ -206,5 +206,35 @@ public class PelilautaTest {
         assertFalse(kiinni);
     }
     
-    //voitettaessaOikeaMaaraRuutujaAvattu
+    @Test
+    public void voitettaessaKaikkiPaitsiMiinatAvattuTapausMiinaKeskella(){
+        lauta.generoiTaulukko(3, 3);
+        lauta.getTaulukko()[1][1].setSisalto(9);  
+        
+        for (int i = 0; i < lauta.getKorkeus(); i++) {
+            for (int j = 0; j < lauta.getLeveys(); j++) {
+                if (lauta.getTaulukko()[i][j].getSisalto() != 9) {
+                    lauta.getTaulukko()[i][j].setStatus("avattu");
+                }
+            }
+        }
+        
+        assertTrue(lauta.onkoVoitettu());
+    }
+    
+    @Test
+    public void voitettaessaKaikkiPaitsiMiinataAvattuTapausMiinatReunassa(){
+        lauta.generoiTaulukko(3, 3);
+        lauta.getTaulukko()[1][1].setStatus("avattu");  
+        
+        for (int i = 0; i < lauta.getKorkeus(); i++) {
+            for (int j = 0; j < lauta.getLeveys(); j++) {
+                if (!lauta.getTaulukko()[i][j].getStatus().equals("avattu")) {
+                    lauta.getTaulukko()[i][j].setSisalto(9);
+                }
+            }
+        }
+        
+        assertTrue(lauta.onkoVoitettu());
+    }    
 }

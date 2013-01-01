@@ -48,4 +48,17 @@ public class RuutuTest {
         ruutu.setSisalto(9);
         assertTrue(ruutu.onkoMiinaa());
     }
+    
+    @Test
+    public void yhdenRuudunMerkkauksenJalkeenStatusMerkattu() {
+        ruutu.merkkaa();
+        assertEquals("merkattu", ruutu.getStatus());
+    }      
+    
+    @Test
+    public void kahdenSamanRuudunMerkkauksenJalkeenStatusKiinni() {
+        ruutu.merkkaa();
+        ruutu.merkkaa();
+        assertEquals("kiinni", ruutu.getStatus());
+    }    
 }

@@ -35,6 +35,7 @@ public class KayttoliittymaTest {
     public void jokaRuudulleAsetetaanJButton() {
         kali.run();
         Pelilauta lauta = kali.getHarava().getLauta();
+        //lauta.generoiUusiLauta();
         boolean onJbutton = true;
         for (int i = 0; i < lauta.getKorkeus(); i++) {
             for (int j = 0; j < lauta.getLeveys(); j++) {
