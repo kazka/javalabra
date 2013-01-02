@@ -67,7 +67,7 @@ public class Pelilauta {
             if (!taulukko[randomY][randomX].onkoMiinaa()) {
                 taulukko[randomY][randomX].setSisalto(9);
             } else {
-                while(!taulukko[randomY][randomX].onkoMiinaa()){
+                while(taulukko[randomY][randomX].onkoMiinaa()){
                     randomX = random.nextInt(this.leveys);
                     randomY = random.nextInt(this.korkeus);
                 }

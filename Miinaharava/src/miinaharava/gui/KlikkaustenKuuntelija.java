@@ -33,7 +33,7 @@ public class KlikkaustenKuuntelija implements MouseListener {
         if (!this.ruutu.getStatus().equals("avattu")) {
             if (e.getButton() == MouseEvent.BUTTON3) {
                 this.ruutu.merkkaa();
-            } else if (!this.ruutu.getStatus().equals("merkattu")) {
+            } else if (!this.ruutu.getStatus().equals("merkattu")) { // siirrä nämä
                 if (this.harava.getLauta().onkoEnsimmainenAvaus() && this.ruutu.getSisalto() == 9) {
                     // jos ensimmäinen klikattu oli miina -> asetetaan miinat uudestaan
                     while (this.ruutu.getSisalto() == 9) {

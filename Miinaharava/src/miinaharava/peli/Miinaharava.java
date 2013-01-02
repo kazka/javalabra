@@ -17,15 +17,13 @@ public class Miinaharava {
 
     public Miinaharava() {
         //this.lauta = new Pelilauta(9,9,10);   
-        this.timer = new Timer();
-        this.kello = new Kello(new JLabel());
-        timer.schedule(kello, 0, 1000);
     }
 
     public void uusiPeli() {
         Asetukset asetukset = new Asetukset(this);
         SwingUtilities.invokeLater(asetukset);  
-
+        this.timer = new Timer();
+        this.kello = new Kello(new JLabel());
     }
 
     public Pelilauta getLauta() {
@@ -73,7 +71,8 @@ public class Miinaharava {
                 this.lauta = new Pelilauta(35, 20, 110);
                 break;
         }
-        this.lauta.tulosta(); // väliaikainen toiminto tekstiversiolle        
+        this.lauta.tulosta(); // väliaikainen toiminto tekstiversiolle 
+        this.timer.schedule(kello, 0, 1000);        
     }
     
 }

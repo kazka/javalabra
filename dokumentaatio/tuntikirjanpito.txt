@@ -36,3 +36,6 @@ merkkaustoiminnon lisäys
 
 1.1. 3h
 testaus, bugien korjaus, asetusruudun määrittely
+
+2.1. 1h
+testaus

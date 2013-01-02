@@ -1,5 +1,6 @@
 package gui;
 
+import java.util.ArrayList;
 import miinaharava.domain.Ruutu;
 import miinaharava.gui.Pelilauta;
 import org.junit.*;
@@ -236,5 +237,51 @@ public class PelilautaTest {
         }
         
         assertTrue(lauta.onkoVoitettu());
+    }    
+    
+    @Test
+    public void avaaKaikkiNollatToimiiOikeinIsompialue(){
+        lauta.generoiTaulukko(3, 3);
+        lauta.getTaulukko()[0][0].setSisalto(9);  
+        lauta.asetaMiinattomat();
+        ArrayList<Ruutu> avattavat = lauta.avaaViereisetNollat(2, 2, new ArrayList<Ruutu>());
+        
+        boolean nollatAvattu = true;
+        for(Ruutu ruutu : avattavat){
+            if (ruutu.getStatus().equals("kiinni")){
+                nollatAvattu = false;
+            }
+        }
+        
+        assertEquals("kiinni", lauta.getTaulukko()[0][0].getStatus());
+        assertTrue(nollatAvattu);
+    }
+    
+    @Test
+    public void avaaKaikkiNollatToimiiOikeinPienempialue(){
+        lauta.generoiTaulukko(3, 3);
+        lauta.getTaulukko()[0][0].setSisalto(9);  
+        lauta.getTaulukko()[0][1].setSisalto(9);
+        lauta.getTaulukko()[0][2].setSisalto(9);
+        lauta.getTaulukko()[1][2].setSisalto(9);
+        lauta.getTaulukko()[2][2].setSisalto(9);
+        
+        lauta.asetaMiinattomat();
+        ArrayList<Ruutu> avattavat = lauta.avaaViereisetNollat(0, 2, new ArrayList<Ruutu>());
+        
+        boolean nollatAvattu = true;
+        for(Ruutu ruutu : avattavat){
+            if (ruutu.getStatus().equals("kiinni")){
+                nollatAvattu = false;
+            }
+        }
+        
+        assertEquals("kiinni", lauta.getTaulukko()[0][0].getStatus());
+        assertEquals("kiinni", lauta.getTaulukko()[0][1].getStatus());
+        assertEquals("kiinni", lauta.getTaulukko()[0][2].getStatus());
+        assertEquals("kiinni", lauta.getTaulukko()[1][2].getStatus());
+        assertEquals("kiinni", lauta.getTaulukko()[2][2].getStatus());
+        
+        assertTrue(nollatAvattu);
     }    
 }
