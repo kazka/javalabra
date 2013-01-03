@@ -183,7 +183,7 @@ public class Pelilauta {
     public void tulosta() {
         for (int i = 0; i < this.korkeus; i++) {
             for (int j = 0; j < this.leveys; j++) {
-                System.out.print("[" + taulukko[i][j].toString() + "]");
+                System.out.print("[" + taulukko[i][j].getSisalto() + "]");
             }
             System.out.println("");
         }
