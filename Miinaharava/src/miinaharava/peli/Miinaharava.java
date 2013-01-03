@@ -59,6 +59,14 @@ public class Miinaharava {
         return timer;
     }
 
+    public void setKello(Kello kello) {
+        this.kello = kello;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
     public void luoPelilauta(String valittu) {
         switch (valittu) {
             case "pieni":

@@ -30,24 +30,31 @@ public class RuutuTest {
     }
 
     @Test
-    public void kaikkiRuudutAlussaKiinni() {
-        Pelilauta lauta = new Pelilauta(10, 10, 10);
-        boolean kiinni = true;
-        for (int i = 0; i < lauta.getKorkeus(); i++) {
-            for (int j = 0; j < lauta.getLeveys(); j++) {
-                if (!lauta.getTaulukko()[i][j].getStatus().equals("kiinni")) {
-                    kiinni = false;
-                }
-            }
-        }
-        assertTrue(kiinni);
+    public void ruutuAlussaKiinni() {
+        assertEquals("kiinni", ruutu.getStatus());
     }
+    
+    @Test
+    public void ruudunKoordinaatitAsetetaanOikein() {
+        ruutu = new Ruutu(5,3);
+        assertEquals(5, ruutu.getX());
+        assertEquals(3, ruutu.getY());
+    }    
 
     @Test
     public void onkoMiinaaPalauttaaTrueJosMiina() {
         ruutu.setSisalto(9);
         assertTrue(ruutu.onkoMiinaa());
     }
+    
+    @Test
+    public void onkoMiinaaPalauttaaFalseJosEiMiinaa() {
+        ruutu.setSisalto(0);
+        Ruutu ruutu2 = new Ruutu();
+        ruutu2.setSisalto(8);
+        assertFalse(ruutu.onkoMiinaa());
+        assertFalse(ruutu2.onkoMiinaa());
+    }    
     
     @Test
     public void yhdenRuudunMerkkauksenJalkeenStatusMerkattu() {

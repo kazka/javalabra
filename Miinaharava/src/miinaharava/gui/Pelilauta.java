@@ -13,6 +13,14 @@ public class Pelilauta {
     private Ruutu[][] taulukko;
 
     public Pelilauta(int leveys, int korkeus, int miinoja) {
+        tarkistaKoko(leveys, korkeus, miinoja);
+        this.taulukko = new Ruutu[this.korkeus][this.leveys];
+        generoiTaulukko(this.korkeus, this.leveys);
+        asetaMiinat();
+        asetaMiinattomat();
+    }
+
+    public final void tarkistaKoko(int leveys, int korkeus, int miinoja) {
         if (leveys < 5) {
             this.leveys = 5;
         } else if (leveys > 300) {
@@ -34,10 +42,6 @@ public class Pelilauta {
         } else {
             this.miinoja = miinoja;
         }
-        this.taulukko = new Ruutu[this.korkeus][this.leveys];
-        generoiTaulukko(this.korkeus, this.leveys);
-        asetaMiinat();
-        asetaMiinattomat();
     }
 
     // generoi taulukon eli asettaa joka soluun uuden ruudun
@@ -229,15 +233,7 @@ public class Pelilauta {
         for (int i = 0; i < this.korkeus; i++) {
             for (int j = 0; j < this.leveys; j++) {
                 if (!this.taulukko[i][j].getStatus().equals("avattu")) {
-                    if (this.taulukko[i][j].getStatus().equals("merkattu") && this.taulukko[i][j].getSisalto() != 9) {
-                        this.taulukko[i][j].setStatus("avattu");
-                        ImageIcon kuvake = new ImageIcon("materiaali/99.jpg");
-                        this.taulukko[i][j].getBtn().setIcon(kuvake);
-                    } else {
-                        this.taulukko[i][j].setStatus("avattu");
-                        ImageIcon kuvake = new ImageIcon("materiaali/" + this.taulukko[i][j].getSisalto() + ".jpg");
-                        this.taulukko[i][j].getBtn().setIcon(kuvake);
-                    }
+                    this.taulukko[i][j].avaaLopussa();
                 }
             }
         }

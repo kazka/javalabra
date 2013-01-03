@@ -39,3 +39,6 @@ testaus, bugien korjaus, asetusruudun määrittely
 
 2.1. 1h
 testaus
+
+3.1. 1h 30min
+testaus ja koodin siistiminen

@@ -284,4 +284,37 @@ public class PelilautaTest {
         
         assertTrue(nollatAvattu);
     }    
+    
+    @Test
+    public void nollauksenJalkeenKaikkienRuutujenSisaltoNolla() {
+        lauta.nollaa();
+        boolean kaikkiNollia = true;
+        for (int i = 0; i < lauta.getKorkeus(); i++) {
+            for (int j = 0; j < lauta.getLeveys(); j++) {
+                if (lauta.getTaulukko()[i][j].getSisalto() != 0) {
+                    kaikkiNollia = false;
+                }
+            }
+        }
+        assertTrue(kaikkiNollia);
+    }    
+    
+    @Test
+    public void nollausNollaaKulmat() {
+        lauta.generoiTaulukko(3, 3);
+        lauta.getTaulukko()[0][0].setSisalto(9);  
+        lauta.getTaulukko()[0][2].setSisalto(9);
+        lauta.getTaulukko()[2][0].setSisalto(9);
+        lauta.getTaulukko()[2][2].setSisalto(9);        
+        lauta.nollaa();
+        boolean kaikkiNollia = true;
+        for (int i = 0; i < lauta.getKorkeus(); i++) {
+            for (int j = 0; j < lauta.getLeveys(); j++) {
+                if (lauta.getTaulukko()[i][j].getSisalto() != 0) {
+                    kaikkiNollia = false;
+                }
+            }
+        }
+        assertTrue(kaikkiNollia);
+    }     
 }

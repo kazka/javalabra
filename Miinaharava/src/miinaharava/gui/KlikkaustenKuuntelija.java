@@ -52,8 +52,7 @@ public class KlikkaustenKuuntelija implements MouseListener {
                 if (this.ruutu.getSisalto() == 0) {
                     ArrayList<Ruutu> ruudut = this.harava.getLauta().avaaViereisetNollat(this.ruutu.getX(), this.ruutu.getY(), new ArrayList<Ruutu>());
                     for (Ruutu ruutuTaulukossa : ruudut) {
-                        ImageIcon kuvake = new ImageIcon("materiaali/" + ruutuTaulukossa.getSisalto() + ".jpg");
-                        ruutuTaulukossa.getBtn().setIcon(kuvake);
+                        ruutuTaulukossa.vaihdaKuvake(ruutuTaulukossa.getSisalto());
                     }
                 }
 
