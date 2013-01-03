@@ -2,6 +2,7 @@
 package miinaharava.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -19,7 +20,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Miinaharava");
-        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*31, this.harava.getLauta().getKorkeus()*37));
+        frame.setPreferredSize(new Dimension(this.harava.getLauta().getLeveys()*29, this.harava.getLauta().getKorkeus()*36));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -31,6 +32,7 @@ public class Kayttoliittyma implements Runnable {
 
     private void luoKomponentit(Container container) {
         container.setLayout(new BorderLayout());
+        container.setBackground(Color.white);
         container.add(getGrid(), BorderLayout.CENTER);
         container.add(this.harava.getKello().getLabel(), BorderLayout.NORTH);
         JButton uusipeliBtn = new JButton("uusi peli");
@@ -63,7 +65,7 @@ public class Kayttoliittyma implements Runnable {
                 sisempi.add(this.harava.getLauta().getTaulukko()[i][j].getBtn());
             }
         }
-        
+        sisempi.setBackground(Color.white);
         return sisempi;
     }
 
