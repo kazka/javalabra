@@ -1,12 +1,9 @@
 
 package miinaharava.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
 import javax.swing.*;
+import miinaharava.domain.Ruutu;
 import miinaharava.peli.Miinaharava;
 
 public class Kayttoliittyma implements Runnable {
@@ -29,7 +26,12 @@ public class Kayttoliittyma implements Runnable {
         frame.pack();
         frame.setVisible(true);
     }
-
+    
+    /**
+     * Metodi luo käyttöliittymän komponentit
+     * 
+     * @param container Container-olio johon komponentit luodaan
+     */
     private void luoKomponentit(Container container) {
         container.setLayout(new BorderLayout());
         container.setBackground(Color.white);
@@ -48,26 +50,38 @@ public class Kayttoliittyma implements Runnable {
         return harava;
     }
     
-    private JComponent getGrid(){
+    /**
+     * Rakentaa uuden pelilaudan gui:n uudeksi GridLayoutiksi ja palauttaa JPanelin, johon on asetettu kyseinen GridLayout
+     *
+     * @return JPanel jossa valmiiksi rakennettu GridLayout-pelilauta
+     */
+    private JPanel getGrid(){
         JPanel sisempi = new JPanel();
         sisempi.setLayout(new GridLayout(harava.getLauta().getKorkeus(), harava.getLauta().getLeveys()));
         
         for (int i = 0; i < this.harava.getLauta().getKorkeus(); i++){
             for (int j = 0; j < this.harava.getLauta().getLeveys(); j++){
-                ImageIcon kuvake = new ImageIcon("materiaali/10.jpg");
-                JButton ruutuBtn = new JButton(kuvake);
-                ruutuBtn.setBorderPainted(false);
-                ruutuBtn.setContentAreaFilled(false);
-                ruutuBtn.setRolloverEnabled(false);
-                //ruutuBtn.addMouseListener(new KlikkaustenKuuntelija(this.harava, j, i, ruutuBtn));
-                ruutuBtn.addMouseListener(new KlikkaustenKuuntelija(this.harava, this.harava.getLauta().getTaulukko()[i][j], ruutuBtn));
-                this.harava.getLauta().getTaulukko()[i][j].setBtn(ruutuBtn);
-                sisempi.add(this.harava.getLauta().getTaulukko()[i][j].getBtn());
+                asetaRuudunJButtonLayoutiin(i, j, sisempi);
             }
         }
         sisempi.setBackground(Color.white);
         return sisempi;
     }
-
+    
+    /**
+     * Asettaa pelin alussa uudelle ruudulle JButtonin ja siihen liittyvän KlikkaustenKuuntelijan, sekä lisää JButtonin JPaneliin
+     * 
+     * @param i Rivi jolla ruutu sijaitsee pelilauta-taulukossa
+     * @param j Sarake jolla ruutu sijaitsee pelilauta-taulukossa
+     *
+     * @return JPanel jossa valmiiksi rakennettu GridLayout-pelilauta
+     */
+    public void asetaRuudunJButtonLayoutiin(int i, int j, JPanel sisempi) {
+        Ruutu ruutu = this.harava.getLauta().getTaulukko()[i][j];
+        ruutu.luoBtn();
+        ruutu.vaihdaKuvake(10);
+        ruutu.getBtn().addMouseListener(new KlikkaustenKuuntelija(this.harava, ruutu));
+        sisempi.add(this.harava.getLauta().getTaulukko()[i][j].getBtn());
+    }
 
 }

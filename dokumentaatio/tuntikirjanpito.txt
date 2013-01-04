@@ -1,7 +1,7 @@
-8.12. 1h
+8.12. 1h 30min
 git harjoittelu
 
-15.12. 20min
+15.12. 30min
 aloitus ja aihemäärittely
 
 15.12. 1h
@@ -37,8 +37,11 @@ merkkaustoiminnon lisäys
 1.1. 3h
 testaus, bugien korjaus, asetusruudun määrittely
 
-2.1. 1h
+2.1. 2h
 testaus
 
-3.1. 1h 30min
-testaus ja koodin siistiminen
+3.1. 2h 30min
+testaus, koodin siistiminen, gui:n muutokset
+
+4.1. 2h
+javadoc

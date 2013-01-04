@@ -1,31 +1,22 @@
 package miinaharava.gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import miinaharava.domain.Ruutu;
 import miinaharava.peli.Miinaharava;
 
+/**
+ * Luokka jolla kuunnellaan klikkauksia tiettyyn ruutuun liittyvässä JButtonissa
+ */
 public class KlikkaustenKuuntelija implements MouseListener {
 
     private Miinaharava harava;
-   // private int rivi;
-   // private int sarake;
-    private JButton btn;
     private Ruutu ruutu;
-    //private Kayttoliittyma kali;
 
-    public KlikkaustenKuuntelija(Miinaharava harava, Ruutu ruutu, JButton btn) {
-       // this.rivi = y;
-       // this.sarake = x;
+    public KlikkaustenKuuntelija(Miinaharava harava, Ruutu ruutu) {
         this.harava = harava;
-        this.btn = btn;
         this.ruutu = ruutu;
-        // this.kali = kali;
     }
 
     @Override
@@ -36,12 +27,12 @@ public class KlikkaustenKuuntelija implements MouseListener {
             } else if (!this.ruutu.getStatus().equals("merkattu")) { // siirrä nämä
                 if (this.harava.getLauta().onkoEnsimmainenAvaus() && this.ruutu.getSisalto() == 9) {
                     // jos ensimmäinen klikattu oli miina -> asetetaan miinat uudestaan
-                    while (this.ruutu.getSisalto() == 9) {
+                    while (this.ruutu.onkoMiinaa()) {
                         this.harava.getLauta().generoiUusiLauta();
                     }
                 }
 
-                if (this.ruutu.getSisalto() == 9) {
+                if (this.ruutu.onkoMiinaa()) {
                     this.ruutu.vaihdaKuvake(9);
                     this.harava.havio();
                     return;

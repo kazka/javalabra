@@ -5,6 +5,9 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import miinaharava.domain.Ruutu;
 
+/**
+ * Miinaharavan pelilauta-ruudukkoa kuvaava luokka
+ */
 public class Pelilauta {
 
     private int leveys;

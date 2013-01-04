@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import javax.swing.*;
 import miinaharava.peli.Miinaharava;
 
+/**
+ * Käyttöliittymä Miinaharavaan liittyville asetuksille, eli pelilaudan koon valinnalle
+ */
 public class Asetukset implements Runnable {
 
     private Miinaharava harava;
