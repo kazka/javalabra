@@ -6,6 +6,9 @@ import javax.swing.*;
 import miinaharava.domain.Ruutu;
 import miinaharava.peli.Miinaharava;
 
+/**
+ * Käyttöliittymä pelilaudalle
+ */
 public class Kayttoliittyma implements Runnable {
     private Miinaharava harava;
     private JFrame frame;    
@@ -38,6 +41,7 @@ public class Kayttoliittyma implements Runnable {
         container.add(getGrid(), BorderLayout.CENTER);
         container.add(this.harava.getKello().getLabel(), BorderLayout.NORTH);
         JButton uusipeliBtn = new JButton("uusi peli");
+        uusipeliBtn.setBackground(new Color(0xff8888));
         uusipeliBtn.addActionListener(new UusipeliNappulanKuuntelija(this.harava, this.frame));
         container.add(uusipeliBtn, BorderLayout.SOUTH);
     }

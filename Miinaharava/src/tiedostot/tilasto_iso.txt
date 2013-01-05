@@ -1,0 +1,3 @@
+kaisa                  200 sek
+viljami                1400 sek
+martti                 2500 sek

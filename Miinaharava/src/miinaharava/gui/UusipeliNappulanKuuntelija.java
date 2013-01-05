@@ -6,7 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import miinaharava.peli.Miinaharava;
 
-
+/**
+ * Luokka jolla kuunnellaan klikkauksia Uusi peli-nappulassa
+ */
 public class UusipeliNappulanKuuntelija implements ActionListener {
     private Miinaharava harava;
     private JFrame frame;

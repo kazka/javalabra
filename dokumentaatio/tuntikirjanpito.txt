@@ -1,17 +1,11 @@
 8.12. 1h 30min
 git harjoittelu
 
-15.12. 30min
-aloitus ja aihem‰‰rittely
+15.12. 2h
+aloitus, aihem‰‰rittely, koodin aloitus, suunnittelu
 
-15.12. 1h
-koodin aloitus, suunnittelu
-
-16.12. 2h
-gui:n asioiden kertaus ja suunnittelu
-
-16.12. 2h
-gui:n eka toteutus
+16.12. 4h
+gui:n asioiden kertaus ja suunnittelu, gui:n eka toteutus
 
 17.12. 1h30min
 testaus ym
@@ -45,3 +39,6 @@ testaus, koodin siistiminen, gui:n muutokset
 
 4.1. 2h
 javadoc
+
+5.1. 3h
+tilastointitoiminto

@@ -1,0 +1,6 @@
+kaisa                  2 sek
+pelaaja                6 sek
+viljami                14 sek
+pelaaja                19 sek
+pelaaja                22 sek
+martti                 25 sek

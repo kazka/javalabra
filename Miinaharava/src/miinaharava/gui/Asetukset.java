@@ -1,6 +1,7 @@
 package miinaharava.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -9,7 +10,7 @@ import javax.swing.*;
 import miinaharava.peli.Miinaharava;
 
 /**
- * Käyttöliittymä Miinaharavaan liittyville asetuksille, eli pelilaudan koon valinnalle
+ * Käyttöliittymä Miinaharavaan liittyville asetuksille ja valinnoille
  */
 public class Asetukset implements Runnable {
 
@@ -42,6 +43,7 @@ public class Asetukset implements Runnable {
         JLabel label = new JLabel("Kentän koko:");
         label.setFont(new Font("Georgia", Font.PLAIN, 24));
         container.add(label);
+        container.setBackground(new Color(0xffdddd));
         ButtonGroup buttonGroup = new ButtonGroup();
         ArrayList<JRadioButton> vaihtoehdot = new ArrayList<JRadioButton>();
 
@@ -61,8 +63,13 @@ public class Asetukset implements Runnable {
         container.add(panel);
 
         JButton button = new JButton("OK");
+        button.setBackground(new Color(0xff8888));
         button.addActionListener(new ValinnanKuuntelija(this.harava, vaihtoehdot, this.frame));
         container.add(button);
+        JButton tilastoButton = new JButton("Näytä tilastot");
+        tilastoButton.setBackground(new Color(0xff8888));
+        tilastoButton.addActionListener(new TilastoNappulanKuuntelija(this.harava, this.frame));
+        container.add(tilastoButton);        
     }
 
     public JFrame getFrame() {

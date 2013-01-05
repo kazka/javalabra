@@ -246,7 +246,7 @@ public class Pelilauta {
     public boolean onkoVoitettu() {
         for (int i = 0; i < this.korkeus; i++) {
             for (int j = 0; j < this.leveys; j++) {
-                if (this.taulukko[i][j].getStatus().equals("kiinni") && this.taulukko[i][j].getSisalto() != 9) {
+                if (!this.taulukko[i][j].getStatus().equals("avattu") && this.taulukko[i][j].getSisalto() != 9) {
                     return false;
                 }
             }

@@ -52,7 +52,9 @@ public class KlikkaustenKuuntelija implements MouseListener {
         }
 
         this.harava.getLauta().tulosta();
-        this.harava.tarkistaVoitto();
+        if (this.harava.getLauta().onkoVoitettu()){
+            this.harava.voitto();
+        }
     }
 
     @Override

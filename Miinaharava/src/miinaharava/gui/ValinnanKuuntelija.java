@@ -9,6 +9,9 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 import miinaharava.peli.Miinaharava;
 
+/**
+ * Luokka jolla kuunnellaan minkä kokoinen pelilauta valitaan asetusruudussa
+ */
 public class ValinnanKuuntelija implements ActionListener {
 
     private ArrayList<JRadioButton> vaihtoehdot;

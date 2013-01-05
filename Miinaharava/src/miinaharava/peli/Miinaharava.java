@@ -1,9 +1,13 @@
 package miinaharava.peli;
 
+import java.io.IOException;
 import java.util.Timer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import miinaharava.domain.TilastonHallinta;
 import miinaharava.gui.Asetukset;
 import miinaharava.gui.Kello;
 import miinaharava.gui.Pelilauta;
@@ -27,12 +31,18 @@ public class Miinaharava {
      * Kello-olio joka pitää kirjaa peliin käytetystä ajasta
      */
     private Kello kello;
+    
+    private TilastonHallinta tilastonhallinta;
+    
+    private String koko;
 
     /**
      * Konstruktori
      */
     public Miinaharava() {
         //this.lauta = new Pelilauta(9,9,10);   
+        this.tilastonhallinta = new TilastonHallinta();
+        this.tilastonhallinta.tulostaKaikkiTilastot();
     }
 
     /**
@@ -65,15 +75,19 @@ public class Miinaharava {
     }
     
     /**
-     * Tarkistaa onko peli voitettu. Jos on kutsuu pelilaudan metodia joka avaa kaikki ruudut,
+     * Jos peli on voitettu, kutsutaan pelilaudan metodia joka avaa kaikki ruudut,
      * hakee pelaamiseen kuluneen ajan, pysäyttää kellon sekä näyttää voittoviestin.
      */   
-    public void tarkistaVoitto() {
-        if (this.lauta.onkoVoitettu()){
-            this.lauta.avaaKaikki();
-            int loppuaika = this.kello.getAikanyt();
-            this.timer.cancel();
-            JOptionPane.showMessageDialog(null, ":> voitit\naikasi: " + loppuaika + " sek");
+    public void voitto() {
+        this.lauta.avaaKaikki();
+        int loppuaika = this.kello.getAikanyt();
+        this.timer.cancel();
+        JOptionPane.showMessageDialog(null, ":> voitit\naikasi: " + loppuaika + " sek");
+        this.tilastonhallinta.lisaaTulosTilastoon("pelaaja", loppuaika, this.koko);
+        try {
+            this.tilastonhallinta.paivitaKaikkiTiedostot();
+        } catch (IOException ex) {
+            System.out.println("Tiedostoon kirjoitaminen ei onnistu:" + ex.getMessage());
         }
     }
     
@@ -112,16 +126,23 @@ public class Miinaharava {
         switch (valittu) {
             case "pieni":
                 this.lauta = new Pelilauta(10, 10, 12);
+                this.koko = "pieni";
                 break;
             case "keskikoko":
                 this.lauta = new Pelilauta(20, 15, 40);
+                this.koko = "keskikoko";
                 break;
             case "iso":
                 this.lauta = new Pelilauta(35, 20, 110);
+                this.koko = "iso";
                 break;
         }
         this.lauta.tulosta(); // väliaikainen toiminto tekstiversiolle 
         this.timer.schedule(kello, 0, 1000);        
+    }
+
+    public TilastonHallinta getTilastonhallinta() {
+        return tilastonhallinta;
     }
     
 }
