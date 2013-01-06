@@ -36,6 +36,7 @@ public class Tilasto {
     }
     
     public final void tilastoListaksi() throws FileNotFoundException{
+        this.tulokset.clear();
         Scanner lukija;
 
         lukija = new Scanner(this.tiedosto);
@@ -66,4 +67,9 @@ public class Tilasto {
             }
         }
     }
+
+    public ArrayList<Tulos> getTulokset() {
+        return tulokset;
+    }
+    
 }

@@ -10,7 +10,7 @@ import miinaharava.peli.Miinaharava;
 
 /**
  *
- * @author kaka
+ * Käyttöliittymä kirjautumiselle ja rekisteröitymiselle
  */
 public class Kirjautuminen implements Runnable {
     private Miinaharava harava;

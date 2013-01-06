@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import miinaharava.peli.Miinaharava;
 
 /**
- * Luokka jolla kuunnellaan klikkauksia nappulassa jolla kirjaudutaan
+ * Luokka jolla kuunnellaan klikkauksia nappulassa jolla luodaan uusi tunnus
  */
 public class RekisteroitymisNappulanKuuntelija implements ActionListener{
     private Miinaharava harava;

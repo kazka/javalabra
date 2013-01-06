@@ -23,6 +23,7 @@ public class Kayttajalista {
     }
 
     public final void lueKayttajatiedosto(File tiedosto) {
+        this.kayttajat.clear();
         Scanner lukija;
         try {
             lukija = new Scanner(tiedosto);
@@ -32,12 +33,12 @@ public class Kayttajalista {
         }
         while (lukija.hasNextLine()) {
             String rivi = lukija.nextLine();
-            generoiKayttajaTiedostosta(rivi);
+            lisaaKayttajaTiedostostaHashmapiin(rivi);
         }
         lukija.close();
     }
     
-    public final void generoiKayttajaTiedostosta(String rivi) {
+    public final void lisaaKayttajaTiedostostaHashmapiin(String rivi) {
         String[] split = rivi.split("\\s+");
         this.kayttajat.put(split[0], split[1]);
     }
@@ -74,4 +75,9 @@ public class Kayttajalista {
         }
         
     }
+
+    public File getTiedosto() {
+        return tiedosto;
+    }
+    
 }

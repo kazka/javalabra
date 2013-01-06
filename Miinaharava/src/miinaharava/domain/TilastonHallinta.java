@@ -50,7 +50,19 @@ public class TilastonHallinta {
                 this.iso.lisaaTulos(lisattava);
                 break;
         }
-    }   
+    }
+
+    public Tilasto getIso() {
+        return iso;
+    }
+
+    public Tilasto getKeski() {
+        return keski;
+    }
+
+    public Tilasto getPieni() {
+        return pieni;
+    }
     
     
 }

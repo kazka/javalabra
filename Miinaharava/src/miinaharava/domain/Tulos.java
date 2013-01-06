@@ -30,6 +30,11 @@ public class Tulos implements Comparable<Tulos> {
         }
     }
 
+    public String getNimi() {
+        return nimi;
+    }
+
+    
     public int getTulos() {
         return tulos;
     }

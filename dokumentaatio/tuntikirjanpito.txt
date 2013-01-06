@@ -43,5 +43,5 @@ javadoc
 5.1. 3h
 tilastointitoiminto
 
-6.1. 2h
-kirjautumistoiminto
+6.1. 3h
+kirjautumistoiminto ja testejä

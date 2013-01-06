@@ -2,8 +2,6 @@ package miinaharava.peli;
 
 import java.io.IOException;
 import java.util.Timer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -26,17 +24,29 @@ public class Miinaharava {
      */
     private Timer timer;
     
-     /**
-     * Kello-olio joka pitää kirjaa peliin käytetystä ajasta
-     */
+    /**
+    * Kello-olio joka pitää kirjaa peliin käytetystä ajasta
+    */
     private Kello kello;
     
+    /**
+    * TilastonHallinta-olio joka ylläpitää tilastointitoiminnallisuutta
+    */
     private TilastonHallinta tilastonhallinta;
     
+    /**
+    * Pelilaudan koko Stringinä, käytetään parametrinä metodissa joka kirjaa tilastoon uuden tuloksen
+    */
     private String koko;
     
+    /**
+    * Lista rekisteröityneistä käyttäjistä
+    */
     private Kayttajalista kayttajalista;
     
+    /**
+    * Pelaajan nimi tietyllä hetkellä, käytetään parametrinä metodissa joka kirjaa tilastoon uuden tuloksen
+    */
     private String kayttajanNimi;
 
     /**
@@ -81,14 +91,23 @@ public class Miinaharava {
     
     /**
      * Jos peli on voitettu, kutsutaan pelilaudan metodia joka avaa kaikki ruudut,
-     * hakee pelaamiseen kuluneen ajan, pysäyttää kellon sekä näyttää voittoviestin.
+     * hakee pelaamiseen kuluneen ajan, pysäyttää kellon sekä näyttää voittoviestin,
+     * ja lopuksi kutsuu tilastot päivittävää metodia.
      */   
     public void voitto() {
         this.lauta.avaaKaikki();
         int loppuaika = this.kello.getAikanyt();
         this.timer.cancel();
         JOptionPane.showMessageDialog(null, ":> voitit\naikasi: " + loppuaika + " sek");
-        
+        paivitaJaNaytaTilasto(loppuaika);
+    }
+    
+    /**
+     * Metodi joka päivittää tilaston voittotuloksella ja näyttää tilastoikkunan
+     * 
+     * @param loppuaika Aika jolla peli voitettiin
+     */ 
+    public void paivitaJaNaytaTilasto(int loppuaika) {
         this.tilastonhallinta.lisaaTulosTilastoon(this.kayttajanNimi, loppuaika, this.koko);
         TilastoIkkuna tikkuna = new TilastoIkkuna(this);
         SwingUtilities.invokeLater(tikkuna);   
@@ -99,7 +118,6 @@ public class Miinaharava {
             System.out.println("Tiedostoon kirjoitaminen ei onnistu:" + ex.getMessage());
         }
     }
-    
     /**
      * Metodi jota kutsutaan kun pelaaja osuu miinaan. Avaa kaikki ruudut,
      * pysäyttää kellon ja näyttää häviöviestin.
@@ -134,15 +152,15 @@ public class Miinaharava {
     public void luoPelilauta(String valittu) {
         switch (valittu) {
             case "pieni":
-                this.lauta = new Pelilauta(10, 10, 5);
+                this.lauta = new Pelilauta(10, 10, 12);
                 this.koko = "pieni";
                 break;
             case "keskikoko":
-                this.lauta = new Pelilauta(20, 15, 5);
+                this.lauta = new Pelilauta(20, 15, 40);
                 this.koko = "keskikoko";
                 break;
             case "iso":
-                this.lauta = new Pelilauta(35, 20, 10);
+                this.lauta = new Pelilauta(35, 20, 110);
                 this.koko = "iso";
                 break;
         }
