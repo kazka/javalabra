@@ -29,7 +29,6 @@ public class Tilasto {
         Collections.sort(this.tulokset);      
         StringBuilder sb = new StringBuilder();
         for (Tulos tulos : this.tulokset){
-            System.out.println(tulos.toString());
             sb.append(tulos.toString());
             sb.append("\n");
         }

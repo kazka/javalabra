@@ -37,16 +37,14 @@ public class TilastoIkkuna implements Runnable {
         BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
         container.setLayout(layout);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+
         JTextPane jtp = new JTextPane();
         jtp.setEditable(false);
         jtp.setText(this.harava.getTilastonhallinta().tulostaKaikkiTilastot());
         jtp.setFont(new Font("Georgia", Font.PLAIN, 15));
         jtp.setBackground(new Color(0xffdddd));
-        panel.add(jtp);
-
-        container.add(panel);      
+        container.add(jtp);
+  
     }
 
     public JFrame getFrame() {

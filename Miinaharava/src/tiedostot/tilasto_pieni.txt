@@ -1,6 +1,6 @@
 kaisa                  2 sek
-pelaaja                6 sek
+kk                     5 sek
 viljami                14 sek
-pelaaja                19 sek
-pelaaja                22 sek
+matti                  21 sek
 martti                 25 sek
+kaisa                  36 sek

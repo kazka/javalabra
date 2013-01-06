@@ -10,7 +10,7 @@ public class Main{
     public static void main(String[] args) {
         Miinaharava miinaharava = new Miinaharava();
         
-        miinaharava.uusiPeli();
+        //miinaharava.uusiPeli();
           
     }
 }

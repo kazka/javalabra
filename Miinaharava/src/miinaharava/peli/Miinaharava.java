@@ -7,10 +7,9 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import miinaharava.domain.Kayttajalista;
 import miinaharava.domain.TilastonHallinta;
-import miinaharava.gui.Asetukset;
-import miinaharava.gui.Kello;
-import miinaharava.gui.Pelilauta;
+import miinaharava.gui.*;
 
 /**
  * Miinaharavan pelitapahtumaa kuvaava luokka
@@ -35,14 +34,20 @@ public class Miinaharava {
     private TilastonHallinta tilastonhallinta;
     
     private String koko;
+    
+    private Kayttajalista kayttajalista;
+    
+    private String kayttajanNimi;
 
     /**
      * Konstruktori
      */
     public Miinaharava() {
-        //this.lauta = new Pelilauta(9,9,10);   
         this.tilastonhallinta = new TilastonHallinta();
         this.tilastonhallinta.tulostaKaikkiTilastot();
+        this.kayttajalista = new Kayttajalista();
+        Kirjautuminen kirjautuminen = new Kirjautuminen(this);
+        SwingUtilities.invokeLater(kirjautuminen);          
     }
 
     /**
@@ -83,7 +88,11 @@ public class Miinaharava {
         int loppuaika = this.kello.getAikanyt();
         this.timer.cancel();
         JOptionPane.showMessageDialog(null, ":> voitit\naikasi: " + loppuaika + " sek");
-        this.tilastonhallinta.lisaaTulosTilastoon("pelaaja", loppuaika, this.koko);
+        
+        this.tilastonhallinta.lisaaTulosTilastoon(this.kayttajanNimi, loppuaika, this.koko);
+        TilastoIkkuna tikkuna = new TilastoIkkuna(this);
+        SwingUtilities.invokeLater(tikkuna);   
+        
         try {
             this.tilastonhallinta.paivitaKaikkiTiedostot();
         } catch (IOException ex) {
@@ -125,15 +134,15 @@ public class Miinaharava {
     public void luoPelilauta(String valittu) {
         switch (valittu) {
             case "pieni":
-                this.lauta = new Pelilauta(10, 10, 12);
+                this.lauta = new Pelilauta(10, 10, 5);
                 this.koko = "pieni";
                 break;
             case "keskikoko":
-                this.lauta = new Pelilauta(20, 15, 40);
+                this.lauta = new Pelilauta(20, 15, 5);
                 this.koko = "keskikoko";
                 break;
             case "iso":
-                this.lauta = new Pelilauta(35, 20, 110);
+                this.lauta = new Pelilauta(35, 20, 10);
                 this.koko = "iso";
                 break;
         }
@@ -143,6 +152,14 @@ public class Miinaharava {
 
     public TilastonHallinta getTilastonhallinta() {
         return tilastonhallinta;
+    }
+
+    public Kayttajalista getKayttajalista() {
+        return kayttajalista;
+    }
+
+    public void setKayttajanNimi(String kayttajanNimi) {
+        this.kayttajanNimi = kayttajanNimi;
     }
     
 }

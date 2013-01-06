@@ -7,7 +7,7 @@ aloitus, aihemäärittely, koodin aloitus, suunnittelu
 16.12. 4h
 gui:n asioiden kertaus ja suunnittelu, gui:n eka toteutus
 
-17.12. 1h30min
+17.12. 1h 30min
 testaus ym
 
 19.12. 1h 30min
@@ -42,3 +42,6 @@ javadoc
 
 5.1. 3h
 tilastointitoiminto
+
+6.1. 2h
+kirjautumistoiminto
