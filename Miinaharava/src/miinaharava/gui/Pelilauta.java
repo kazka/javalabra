@@ -111,31 +111,24 @@ public class Pelilauta {
     // laskee tietyssä solussa olevalle ruudulle ympäröivien miinojen määrän
     public int laskeYmparoivatMiinat(int rivi, int sarake) {
         int miinat = 0;
-        if (rivi > 0 && sarake > 0 && taulukko[rivi - 1][sarake - 1].onkoMiinaa()) {
-            miinat++;
-        }
-        if (rivi > 0 && taulukko[rivi - 1][sarake].onkoMiinaa()) {
-            miinat++;
-        }
-        if (rivi > 0 && sarake < this.leveys - 1 && taulukko[rivi - 1][sarake + 1].onkoMiinaa()) {
-            miinat++;
-        }
-        if (sarake > 0 && taulukko[rivi][sarake - 1].onkoMiinaa()) {
-            miinat++;
-        }
-        if (sarake < this.leveys - 1 && taulukko[rivi][sarake + 1].onkoMiinaa()) {
-            miinat++;
-        }
-        if (rivi < this.korkeus - 1 && sarake > 0 && taulukko[rivi + 1][sarake - 1].onkoMiinaa()) {
-            miinat++;
-        }
-        if (rivi < this.korkeus - 1 && taulukko[rivi + 1][sarake].onkoMiinaa()) {
-            miinat++;
-        }
-        if (rivi < this.korkeus - 1 && sarake < this.leveys - 1 && taulukko[rivi + 1][sarake + 1].onkoMiinaa()) {
-            miinat++;
-        }
+        miinat += haeYmparoivatMiinat(rivi-1, sarake-1);
+        miinat += haeYmparoivatMiinat(rivi-1, sarake);
+        miinat += haeYmparoivatMiinat(rivi-1, sarake+1);
+        miinat += haeYmparoivatMiinat(rivi, sarake+1);
+        miinat += haeYmparoivatMiinat(rivi, sarake-1);
+        miinat += haeYmparoivatMiinat(rivi+1, sarake-1);
+        miinat += haeYmparoivatMiinat(rivi+1, sarake);
+        miinat += haeYmparoivatMiinat(rivi+1, sarake+1);
+
         return miinat;
+    }
+    
+    public int haeYmparoivatMiinat(int rivi, int sarake){
+        if (onkoTaulukossa(rivi, sarake) && taulukko[rivi][sarake].onkoMiinaa()){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     // kun avatussa ruudussa on luku 0, lasketaan syvyyssuuntaisella läpikäynnillä kaikki viereiset ruudut 
@@ -145,36 +138,25 @@ public class Pelilauta {
         ruudut.add(this.taulukko[rivi][sarake]);
 
         //reunat
-        if (rivi > 0) {
-            tarkistaJaAvaa(rivi - 1, sarake, ruudut);
-        }
-        if (sarake > 0) {
-            tarkistaJaAvaa(rivi, sarake - 1, ruudut);
-        }
-        if (sarake < this.leveys - 1) {
-            tarkistaJaAvaa(rivi, sarake + 1, ruudut);
-        }
-        if (rivi < this.korkeus - 1) {
-            tarkistaJaAvaa(rivi + 1, sarake, ruudut);
-        }
+        tarkistaJaAvaa(rivi - 1, sarake, ruudut);
+        tarkistaJaAvaa(rivi, sarake - 1, ruudut);
+        tarkistaJaAvaa(rivi, sarake + 1, ruudut);
+        tarkistaJaAvaa(rivi + 1, sarake, ruudut);
         // kulmat
-        if (rivi > 0 && sarake > 0) {
-            tarkistaJaAvaa(rivi - 1, sarake - 1, ruudut);
-        }
-        if (rivi > 0 && sarake < this.leveys - 1) {
-            tarkistaJaAvaa(rivi - 1, sarake + 1, ruudut);
-        }
-        if (rivi < this.korkeus - 1 && sarake > 0) {
-            tarkistaJaAvaa(rivi + 1, sarake - 1, ruudut);
-        }
-        if (rivi < this.korkeus - 1 && sarake < this.leveys - 1) {
-            tarkistaJaAvaa(rivi + 1, sarake + 1, ruudut);
-        }
+        tarkistaJaAvaa(rivi - 1, sarake - 1, ruudut);
+        tarkistaJaAvaa(rivi - 1, sarake + 1, ruudut);
+        tarkistaJaAvaa(rivi + 1, sarake - 1, ruudut);
+        tarkistaJaAvaa(rivi + 1, sarake + 1, ruudut);
+
         return ruudut;
     }
 
     // tarkistaa onko ruutu pelilaudan alueella ja ei avattu
     public void tarkistaJaAvaa(int rivi, int sarake, ArrayList<Ruutu> ruudut) {
+        if (!onkoTaulukossa(rivi, sarake)){
+            return;
+        }
+        
         if (this.taulukko[rivi][sarake].getSisalto() == 0 && !this.taulukko[rivi][sarake].getStatus().equals("avattu")) {
             avaaViereisetNollat(sarake, rivi, ruudut);
         } else {
@@ -250,6 +232,13 @@ public class Pelilauta {
                     return false;
                 }
             }
+        }
+        return true;
+    }
+
+    private boolean onkoTaulukossa(int rivi, int sarake) {
+        if (rivi < 0 || rivi >= this.korkeus || sarake < 0 || sarake >= this.leveys) {
+            return false;
         }
         return true;
     }
