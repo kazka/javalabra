@@ -54,7 +54,7 @@ public class Miinaharava {
      */
     public Miinaharava() {
         this.tilastonhallinta = new TilastonHallinta();
-        this.tilastonhallinta.tulostaKaikkiTilastot();
+        //this.tilastonhallinta.tulostaKaikkiTilastot();
         this.kayttajalista = new Kayttajalista();
         Kirjautuminen kirjautuminen = new Kirjautuminen(this);
         SwingUtilities.invokeLater(kirjautuminen);          

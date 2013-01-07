@@ -45,3 +45,6 @@ tilastointitoiminto
 
 6.1. 3h
 kirjautumistoiminto ja testejä
+
+7.1. 2h
+refaktorointi ja sekvenssikaaviot
