@@ -2,7 +2,10 @@
 package miinaharava.gui;
 
 import java.awt.*;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import miinaharava.domain.Ruutu;
 import miinaharava.peli.Miinaharava;
 
@@ -10,13 +13,30 @@ import miinaharava.peli.Miinaharava;
  * Käyttöliittymä pelilaudalle
  */
 public class Kayttoliittyma implements Runnable {
+    
+    /**
+     * Käyttöliittymään liittyvä Miinaharava-olio
+     */
     private Miinaharava harava;
+    
+    /**
+     * Käyttöliittymään liittyvä JFrame-olio
+     */
     private JFrame frame;    
 
+    /**
+    * Konstruktori
+    * 
+    * @param harava Miinaharava johon käyttöliittymä asetetaan kuuluvaksi
+    */
     public Kayttoliittyma(Miinaharava harava) {
         this.harava = harava;
     }
 
+    /**
+    * Runnable-rajapinnan toteuttavan olion abstrakti metodi, joka luo uuden
+    * ikkunan luokassa määritellyille käyttöliittymäelementeille
+    */
     @Override
     public void run() {
         frame = new JFrame("Miinaharava");
@@ -46,16 +66,27 @@ public class Kayttoliittyma implements Runnable {
         container.add(uusipeliBtn, BorderLayout.SOUTH);
     }
 
+    /**
+     * Palauttaa käyttöliittymään liittyvän JFrame-olion
+     *
+     * @return frame
+     */   
     public JFrame getFrame() {
         return frame;
     }
 
+    /**
+     * Palauttaa käyttöliittymään liittyvän Miinaharava-olion
+     *
+     * @return harava
+     */  
     public Miinaharava getHarava() {
         return harava;
     }
     
     /**
-     * Rakentaa uuden pelilaudan gui:n uudeksi GridLayoutiksi ja palauttaa JPanelin, johon on asetettu kyseinen GridLayout
+     * Rakentaa uuden pelilaudan gui:n uudeksi GridLayoutiksi ja palauttaa
+     * JPanelin, johon on asetettu kyseinen GridLayout
      *
      * @return JPanel jossa valmiiksi rakennettu GridLayout-pelilauta
      */
@@ -73,12 +104,11 @@ public class Kayttoliittyma implements Runnable {
     }
     
     /**
-     * Asettaa pelin alussa uudelle ruudulle JButtonin ja siihen liittyvän KlikkaustenKuuntelijan, sekä lisää JButtonin JPaneliin
+     * Asettaa pelin alussa uudelle ruudulle JButtonin ja siihen liittyvän
+     * KlikkaustenKuuntelijan, sekä lisää JButtonin JPaneliin
      * 
      * @param i Rivi jolla ruutu sijaitsee pelilauta-taulukossa
      * @param j Sarake jolla ruutu sijaitsee pelilauta-taulukossa
-     *
-     * @return JPanel jossa valmiiksi rakennettu GridLayout-pelilauta
      */
     public void asetaRuudunJButtonLayoutiin(int i, int j, JPanel sisempi) {
         Ruutu ruutu = this.harava.getLauta().getTaulukko()[i][j];

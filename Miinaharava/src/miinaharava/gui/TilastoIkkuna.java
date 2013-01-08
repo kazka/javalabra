@@ -14,13 +14,29 @@ import miinaharava.peli.Miinaharava;
  */
 public class TilastoIkkuna implements Runnable {
 
+    /**
+     * TilastoIkkunaan liittyvä Miinaharava-olio
+     */
     private Miinaharava harava;
+    
+    /**
+     * TilastoIkkunaan liittyvä JFrame-olio
+     */
     private JFrame frame;
 
+    /**
+    * Konstruktori
+    * 
+    * @param harava Miinaharava johon tilastoikkunaä asetetaan kuuluvaksi
+    */
     public TilastoIkkuna(Miinaharava harava) {
         this.harava = harava;
     }
 
+    /**
+    * Runnable-rajapinnan toteuttavan olion abstrakti metodi, joka luo uuden
+    * ikkunan luokassa määritellyille käyttöliittymäelementeille
+    */
     @Override
     public void run() {
         frame = new JFrame("Tilastot");
@@ -33,24 +49,38 @@ public class TilastoIkkuna implements Runnable {
         frame.setVisible(true);
     }
 
+    /**
+     * Metodi luo tilastoikkunan komponentit
+     * 
+     * @param container Container-olio johon komponentit luodaan
+     */
     private void luoKomponentit(Container container) {
         BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
         container.setLayout(layout);
 
-
         JTextPane jtp = new JTextPane();
         jtp.setEditable(false);
-        jtp.setText(this.harava.getTilastonhallinta().tulostaKaikkiTilastot());
+        jtp.setText(this.harava.getTilastonhallinta().kaikkiTilastotStringiksi());
         jtp.setFont(new Font("Georgia", Font.PLAIN, 15));
         jtp.setBackground(new Color(0xffdddd));
         container.add(jtp);
   
     }
 
+    /**
+     * Palauttaa tilastoikkunaan liittyvän JFrame-olion
+     *
+     * @return frame
+     */  
     public JFrame getFrame() {
         return frame;
     }
 
+    /**
+     * Palauttaa kirjautumisikkunaan liittyvän Miinaharava-olion
+     *
+     * @return harava
+     */  
     public Miinaharava getHarava() {
         return harava;
     }

@@ -8,10 +8,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import miinaharava.domain.Kayttajalista;
-import miinaharava.domain.Tilasto;
-import miinaharava.domain.Tulos;
-import org.junit.*;
 import static org.junit.Assert.*;
+import org.junit.*;
 
 
 public class KayttajalistaTest {

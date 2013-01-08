@@ -20,7 +20,8 @@ public class Miinaharava {
     private Pelilauta lauta;
     
     /**
-     * Timer-olio jonka avulla säädetään peliin ajanotto
+     * Timer-olio jonka avulla säädetään peliin ajanotto joka toimii tietyin
+     * väliajoin (tässä sekunnin välein)
      */
     private Timer timer;
     
@@ -35,17 +36,19 @@ public class Miinaharava {
     private TilastonHallinta tilastonhallinta;
     
     /**
-    * Pelilaudan koko Stringinä, käytetään parametrinä metodissa joka kirjaa tilastoon uuden tuloksen
+    * Pelilaudan koko Stringinä eli joko "pieni", "keskikoko" tai "iso".
+    * Käytetään parametrinä metodissa joka kirjaa tilastoon uuden tuloksen.
     */
     private String koko;
     
     /**
-    * Lista rekisteröityneistä käyttäjistä
+    * Olio joka pitää kirjaa rekisteröityneistä käyttäjistä
     */
     private Kayttajalista kayttajalista;
     
     /**
-    * Pelaajan nimi tietyllä hetkellä, käytetään parametrinä metodissa joka kirjaa tilastoon uuden tuloksen
+    * Pelaajan nimi tietyllä hetkellä, käytetään parametrinä metodissa joka
+    * kirjaa tilastoon uuden tuloksen
     */
     private String kayttajanNimi;
 
@@ -61,8 +64,8 @@ public class Miinaharava {
     }
 
     /**
-     * Aloittaa uuden pelin avaamalla asetukset-ikkunan jossa säädetään pelilaudan koko,
-     * ja asettaa miinaharavalle uudet Timer- ja Kello-oliot
+     * Aloittaa uuden pelin avaamalla asetukset-ikkunan jossa säädetään pelilaudan
+     * koko sekä asettaa miinaharavalle uudet Timer- ja Kello-oliot
      */
     public void uusiPeli() {
         Asetukset asetukset = new Asetukset(this);
@@ -74,7 +77,7 @@ public class Miinaharava {
     /**
      * Palauttaa miinaharavaan liittyvän pelilaudan
      *
-     * @return Pelilauta
+     * @return pelilauta
      */   
     public Pelilauta getLauta() {
         return lauta;
@@ -91,11 +94,11 @@ public class Miinaharava {
     
     /**
      * Jos peli on voitettu, kutsutaan pelilaudan metodia joka avaa kaikki ruudut,
-     * hakee pelaamiseen kuluneen ajan, pysäyttää kellon sekä näyttää voittoviestin,
-     * ja lopuksi kutsuu tilastot päivittävää metodia.
+     * haetaan pelaamiseen kulunut aika kellolta, pysäytetään ajastus sekä näytetään voittoviesti,
+     * ja lopuksi kutsutaan tilastot päivittävää metodia.
      */   
     public void voitto() {
-        this.lauta.avaaKaikki();
+        this.lauta.avaaKaikki("voitto");
         int loppuaika = this.kello.getAikanyt();
         this.timer.cancel();
         JOptionPane.showMessageDialog(null, ":> voitit\naikasi: " + loppuaika + " sek");
@@ -119,48 +122,71 @@ public class Miinaharava {
         }
     }
     /**
-     * Metodi jota kutsutaan kun pelaaja osuu miinaan. Avaa kaikki ruudut,
-     * pysäyttää kellon ja näyttää häviöviestin.
+     * Metodi jota kutsutaan kun pelaaja osuu miinaan. Avataan kaikki ruudut,
+     * pysäytetään ajastus ja näytetään häviöviesti.
      */   
     public void havio() {
-        this.lauta.avaaKaikki();
+        this.lauta.avaaKaikki("havio");
         this.timer.cancel();
         JOptionPane.showMessageDialog(null, ":< hävisit");
     }
-
+    
+    /**
+     * Palauttaa miinaharavaan liittyvän Kello-olion
+     *
+     * @return kello
+     */   
     public Kello getKello() {
         return kello;
     }
 
+    /**
+     * Palauttaa miinaharavaan liittyvän pelilaudan
+     *
+     * @return timer
+     */   
     public Timer getTimer() {
         return timer;
     }
-
+    
+    /**
+     * Asetetaan miinaharavalle Kello-olio
+     *
+     * @param kello Asetettava Kello-olio
+     */   
     public void setKello(Kello kello) {
         this.kello = kello;
     }
 
+    /**
+     * Asetetaan miinaharavalle Timer-olio
+     *
+     * @param timer Asetettava Timer-olio
+     */  
     public void setTimer(Timer timer) {
         this.timer = timer;
     }
     
     /**
-     * Asettaa miinaharavalle uuden pelilaudan valitussa koossa sekä käynnistää ajanoton.
+     * Asettaa miinaharavalle uuden pelilaudan valitussa koossa valitun värisenä sekä
+     * kertoo timer-oliolle, että kellon run()-metodia on kutsuttava sekunnin
+     * (eli 1000 millisekunnin) välein.
      *
-     * @param valittu Pelilaudan koko, joko "pieni", "keskikoko" tai "iso"
+     * @param valittuKoko Pelilaudan koko, joko "pieni", "keskikoko" tai "iso"
+     * @param valittuVari Pelilaudan väri, joko "punainen" tai "vihrea"
      */ 
-    public void luoPelilauta(String valittu) {
-        switch (valittu) {
+    public void luoPelilauta(String valittuKoko, String valittuVari) {
+        switch (valittuKoko) {
             case "pieni":
-                this.lauta = new Pelilauta(10, 10, 12);
+                this.lauta = new Pelilauta(10, 10, 12, valittuVari);
                 this.koko = "pieni";
                 break;
             case "keskikoko":
-                this.lauta = new Pelilauta(20, 15, 40);
+                this.lauta = new Pelilauta(20, 15, 40, valittuVari);
                 this.koko = "keskikoko";
                 break;
             case "iso":
-                this.lauta = new Pelilauta(35, 20, 110);
+                this.lauta = new Pelilauta(35, 20, 110, valittuVari);
                 this.koko = "iso";
                 break;
         }
@@ -168,14 +194,30 @@ public class Miinaharava {
         this.timer.schedule(kello, 0, 1000);        
     }
 
+    /**
+     * Palauttaa miinaharavaan liittyvän TilastonHallinta-olion
+     *
+     * @return tilastonhallinta
+     */  
     public TilastonHallinta getTilastonhallinta() {
         return tilastonhallinta;
     }
 
+    /**
+     * Palauttaa miinaharavaan liittyvän KayttajaLista-olion
+     *
+     * @return kayttajalista
+     */  
     public Kayttajalista getKayttajalista() {
         return kayttajalista;
     }
 
+    /**
+     * Asetetaan miinaharavalle käyttäjä
+     *
+     * @param kayttajanNimi Käyttäjän nimi/tunnus, saadaan tietoon alussa
+     * kun peliin kirjaudutaan sisään
+     */  
     public void setKayttajanNimi(String kayttajanNimi) {
         this.kayttajanNimi = kayttajanNimi;
     }

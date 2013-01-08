@@ -2,8 +2,8 @@
 package domain;
 
 import miinaharava.domain.TilastonHallinta;
+import static org.junit.Assert.assertFalse;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 
 public class TilastonHallintaTest {
@@ -30,10 +30,10 @@ public class TilastonHallintaTest {
     public void tearDown() {
     }
 
-     @Test
-     public void tulosLisataanOikeaanTilastoon() {
-         // tee
-     }
+//     @Test
+//     public void tulosLisataanOikeaanTilastoon() {
+//         
+//     }
      
      @Test
      public void tilastotLuodaan() {

@@ -48,3 +48,6 @@ kirjautumistoiminto ja testejä
 
 7.1. 2h
 refaktorointi ja sekvenssikaaviot
+
+8.1. 1h 30min
+värivalinta ja refaktorointi

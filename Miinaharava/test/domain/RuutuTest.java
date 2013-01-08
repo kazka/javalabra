@@ -1,9 +1,8 @@
 package domain;
 
 import miinaharava.domain.Ruutu;
-import miinaharava.gui.Pelilauta;
-import org.junit.*;
 import static org.junit.Assert.*;
+import org.junit.*;
 
 public class RuutuTest {
 

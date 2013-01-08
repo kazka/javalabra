@@ -1,13 +1,12 @@
 package domain;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import miinaharava.domain.Tilasto;
 import miinaharava.domain.Tulos;
-import org.junit.*;
 import static org.junit.Assert.*;
+import org.junit.*;
 
 public class TilastoTest {
 
@@ -27,7 +26,7 @@ public class TilastoTest {
 
     @Before
     public void setUp() {
-        tiedosto = new File("src/tiedostot/tilasto_iso.txt");
+        tiedosto = new File("src/tiedostot/tilasto_testi.txt");
         tilasto = new Tilasto(tiedosto);
     }
 

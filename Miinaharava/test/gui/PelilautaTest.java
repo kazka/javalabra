@@ -195,7 +195,7 @@ public class PelilautaTest {
     public void avaaKaikkiKutsunJalkeenMikaanRuutuEiOleKiinni() {
         lauta.getTaulukko()[0][0].setStatus("merkattu");
         lauta.getTaulukko()[29][19].setStatus("merkattu");
-        lauta.avaaKaikki();
+        lauta.avaaKaikki("havio");
         boolean kiinni = false;
         for (int i = 0; i < lauta.getKorkeus(); i++) {
             for (int j = 0; j < lauta.getLeveys(); j++) {

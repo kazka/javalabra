@@ -5,8 +5,8 @@ import java.util.Timer;
 import javax.swing.JLabel;
 import miinaharava.gui.Kello;
 import miinaharava.peli.Miinaharava;
+import static org.junit.Assert.assertEquals;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 
 public class MiinaharavaTest {
@@ -37,7 +37,7 @@ public class MiinaharavaTest {
     
     @Test
     public void uudenPienenPelilaudanKokoAsetetaanOikein(){
-        harava.luoPelilauta("pieni");
+        harava.luoPelilauta("pieni", "punainen");
         
         assertEquals(10, harava.getLauta().getLeveys());
         assertEquals(10, harava.getLauta().getKorkeus());
@@ -46,7 +46,7 @@ public class MiinaharavaTest {
     
     @Test
     public void uudenKeskikokoisenPelilaudanKokoAsetetaanOikein(){
-        harava.luoPelilauta("keskikoko");
+        harava.luoPelilauta("keskikoko", "punainen");
         
         assertEquals(20, harava.getLauta().getLeveys());
         assertEquals(15, harava.getLauta().getKorkeus());
@@ -55,7 +55,7 @@ public class MiinaharavaTest {
     
     @Test
     public void uudenIsonPelilaudanKokoAsetetaanOikein(){
-        harava.luoPelilauta("iso");
+        harava.luoPelilauta("iso", "punainen");
         
         assertEquals(35, harava.getLauta().getLeveys());
         assertEquals(20, harava.getLauta().getKorkeus());

@@ -13,13 +13,30 @@ import miinaharava.peli.Miinaharava;
  * Käyttöliittymä kirjautumiselle ja rekisteröitymiselle
  */
 public class Kirjautuminen implements Runnable {
+    
+    /**
+     * Kirjautumiseen liittyvä Miinaharava-olio
+     */
     private Miinaharava harava;
+    
+    /**
+     * Kirjautumiseen liittyvä JFrame-olio
+     */
     private JFrame frame;
 
+    /**
+    * Konstruktori
+    * 
+    * @param harava Miinaharava johon kirjautuminen asetetaan kuuluvaksi
+    */
     public Kirjautuminen(Miinaharava harava) {
         this.harava = harava;
     }
 
+    /**
+    * Runnable-rajapinnan toteuttavan olion abstrakti metodi, joka luo uuden
+    * ikkunan luokassa määritellyille käyttöliittymäelementeille
+    */
     @Override
     public void run() {
         frame = new JFrame("Kirjaudu tai luo tunnus");
@@ -33,6 +50,11 @@ public class Kirjautuminen implements Runnable {
         frame.setVisible(true);
     }
 
+    /**
+     * Metodi luo kirjautumisikkunan komponentit
+     * 
+     * @param container Container-olio johon komponentit luodaan
+     */
     private void luoKomponentit(Container container) {
         BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
         container.setLayout(layout);
@@ -84,10 +106,20 @@ public class Kirjautuminen implements Runnable {
         container.add(kirjauduBtn2);           
     }
 
+    /**
+     * Palauttaa kirjautumisikkunaan liittyvän JFrame-olion
+     *
+     * @return frame
+     */  
     public JFrame getFrame() {
         return frame;
     }
 
+    /**
+     * Palauttaa kirjautumisikkunaan liittyvän Miinaharava-olion
+     *
+     * @return harava
+     */  
     public Miinaharava getHarava() {
         return harava;
     }

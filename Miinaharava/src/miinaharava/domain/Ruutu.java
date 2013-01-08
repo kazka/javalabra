@@ -8,31 +8,41 @@ import javax.swing.JButton;
  */
 public class Ruutu {
 
-     /**
-     * Ruudun senhetkinen status eli tila, voi olla joko "kiinni", "avattu" tai "merkattu".
+    /**
+     * Ruudun senhetkinen status eli tila, voi olla joko "kiinni", "avattu" tai
+     * "merkattu".
      */
     private String status;
     
-     /**
-     * Ruudun sisältö, joka kerrotaan lukuna joka tulee näkyviin kun ruutu avataan.
-     * Mahdolliset luvut ovat 0 (eli tyhjä), 1-8, ja 9 jos ruudussa on miina.
-     */    
+    /**
+     * Ruudun sisältö, joka kerrotaan lukuna joka tulee näkyviin kun ruutu
+     * avataan. Mahdolliset luvut ovat 0 (eli tyhjä), 1-8, ja 9 jos ruudussa on
+     * miina.
+     */
     private int sisalto;
     
-     /**
-     * Ruutuun liittyvä JButton jonka avulla kuunnellaan klikkauksia ja asetetaan ruudulle oikea kuvake.
-     */        
+    /**
+     * Ruutuun liittyvä JButton jonka avulla kuunnellaan klikkauksia ja
+     * asetetaan ruudulle oikea kuvake.
+     */
     private JButton btn;
     
-     /**
+    /**
      * Sarake jolla ruutu sijaitsee pelilaudan taulukossa
-     */        
+     */
     private int x;
     
-     /**
+    /**
      * Rivi jolla ruutu sijaitsee pelilaudan taulukossa
-     */     
+     */
     private int y;
+    
+    /**
+     * Ruutuun liittyvä väri, asetetaan alussa kun ruutuja luodaan Pelilaudan
+     * generoiTaulukko(int korkeus, int leveys, String vari)-metodissa.
+     * Käytetään vaihdaKuvake()-metodissa jotta osataan käyttää oikean värisiä kuvakkeita.
+     */
+    private String vari;
 
     /**
      * Oletusarvoisesti käytettävä konstruktori
@@ -48,9 +58,6 @@ public class Ruutu {
 
     /**
      * Testien käytetössä oleva konstruktori
-     *
-     * @param x Sarake jolla Ruutu sijaitsee
-     * @param y Rivi jolla Ruutu sijaitsee
      */
     public Ruutu() {
         this.status = "kiinni";
@@ -69,7 +76,7 @@ public class Ruutu {
     /**
      * Vaihtaa Ruudun sisällön
      *
-     * @param luku Ruudulle asetettava sisalto
+     * @param luku Ruudulle asetettava sisältö
      */
     public void setSisalto(int luku) {
         this.sisalto = luku;
@@ -91,24 +98,20 @@ public class Ruutu {
      * Palauttaa ruudun sisällön
      *
      * @return ruudun sisältö lukuna 0-9
-     */    
+     */
     public int getSisalto() {
         return sisalto;
     }
-    
+
     /**
      * Palauttaa ruudun statuksen
      *
      * @return ruudun status, joko "kiinni", "avattu" tai "merkattu"
-     */  
+     */
     public String getStatus() {
         return status;
     }
 
-//    @Override
-//    public String toString() {
-//        return Integer.toString(sisalto);
-//    }
     /**
      * Palauttaa ruutuun liittyvän JButtonin
      *
@@ -142,16 +145,21 @@ public class Ruutu {
     }
 
     /**
-     * Vaihtaa ruutuun liittyvän JButtonin kuvakkeen. Kuvake esitetään ImageIcon-oliona.
-     * Jos ruudulla ei vielä ole JButtonia, kutsutaan metodia luoBtn()
+     * Vaihtaa ruutuun liittyvän JButtonin kuvakkeen. Kuvake esitetään
+     * ImageIcon-oliona. Jos ruudulla ei vielä ole JButtonia, kutsutaan metodia
+     * luoBtn()
      *
      * @param sisalto Luku jonka perusteella haetaan kyseiseen sisaltoon
-     * liittyva jpg-kuva
+     * liittyva jpg-kuva. Lukujen/sisältöjen 0-9 lisäksi on käytössä luvut 10=tyhjä,
+     * 88=merkattu, 99=väärin merkattu miinaton ruutu
      */
     public void vaihdaKuvake(int sisalto) {
         ImageIcon kuvake = new ImageIcon("materiaali/" + sisalto + ".jpg");
+        if (this.vari != null && this.vari.equals("vihrea")) {
+            kuvake = new ImageIcon("materiaali/vihrea/" + sisalto + ".jpg");
+        }
         if (this.btn == null) {
-            luoBtn();            
+            luoBtn();
         }
         this.btn.setIcon(kuvake);
     }
@@ -164,11 +172,12 @@ public class Ruutu {
         this.btn.setBorderPainted(false);
         this.btn.setContentAreaFilled(false);
         this.btn.setRolloverEnabled(false);
-    }    
-    
+    }
+
     /**
      * Kun peli on loppu, avataan ruutu kutsumalla tätä metodia ja vaihdetaan
-     * sille oikea kuvake
+     * sille oikea kuvake. Alussa tarkistetaan oliko ruutu väärin merkattu
+     * miina.
      */
     public void avaaLopussa() {
         if (this.status.equals("merkattu") && this.sisalto != 9) {
@@ -180,13 +189,6 @@ public class Ruutu {
         }
     }
 
-//    public void setX(int x) {
-//        this.x = x;
-//    }
-//
-//    public void setY(int y) {
-//        this.y = y;
-//    }
     /**
      * Palauttaa sen sarakkeen int-arvon jolla ruutu sijaitsee
      *
@@ -203,5 +205,14 @@ public class Ruutu {
      */
     public int getY() {
         return y;
+    }
+
+    /**
+     * Asettaa ruudulle värin
+     *
+     * @param vari Ruudulle asetettava väri, joko "punainen" tai "vihrea"
+     */
+    public void setVari(String vari) {
+        this.vari = vari;
     }
 }

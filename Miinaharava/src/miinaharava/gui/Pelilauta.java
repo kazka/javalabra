@@ -2,7 +2,6 @@ package miinaharava.gui;
 
 import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.ImageIcon;
 import miinaharava.domain.Ruutu;
 
 /**
@@ -22,7 +21,15 @@ public class Pelilauta {
         asetaMiinat();
         asetaMiinattomat();
     }
-
+    
+    public Pelilauta(int leveys, int korkeus, int miinoja, String vari) {
+        tarkistaKoko(leveys, korkeus, miinoja);
+        this.taulukko = new Ruutu[this.korkeus][this.leveys];
+        generoiTaulukko(this.korkeus, this.leveys, vari);
+        asetaMiinat();
+        asetaMiinattomat();
+    }
+    
     public final void tarkistaKoko(int leveys, int korkeus, int miinoja) {
         if (leveys < 5) {
             this.leveys = 5;
@@ -48,13 +55,13 @@ public class Pelilauta {
     }
 
     // generoi taulukon eli asettaa joka soluun uuden ruudun
-    public final void generoiTaulukko() {
-        for (int i = 0; i < this.korkeus; i++) {
-            for (int j = 0; j < this.leveys; j++) {
-                this.taulukko[i][j] = new Ruutu(j,i);
-            }
-        }
-    }
+//    public final void generoiTaulukko() {
+//        for (int i = 0; i < this.korkeus; i++) {
+//            for (int j = 0; j < this.leveys; j++) {
+//                this.taulukko[i][j] = new Ruutu(j,i);
+//            }
+//        }
+//    }
 
     // generoi tietyn kokoisen taulukon (käytetään testeissä)
     public final void generoiTaulukko(int korkeus, int leveys) {
@@ -64,6 +71,15 @@ public class Pelilauta {
             }
         }
     }
+    
+    public final void generoiTaulukko(int korkeus, int leveys, String vari) {
+        for (int i = 0; i < korkeus; i++) {
+            for (int j = 0; j < leveys; j++) {
+                this.taulukko[i][j] = new Ruutu(j,i);
+                this.taulukko[i][j].setVari(vari);
+            }
+        }
+    }    
 
     // asetetaan oikea määrä miinoja sattumanvaraisiin ruutuihin
     public final void asetaMiinat() {
@@ -214,16 +230,23 @@ public class Pelilauta {
     }
 
     // lopussa avataan kaikki ruudut joita ei vielä ollut avattu ja vaihtaa niille oikeat jpg-kuvakkeet
-    public void avaaKaikki() {
+    public void avaaKaikki(String lopputulos) {
         for (int i = 0; i < this.korkeus; i++) {
             for (int j = 0; j < this.leveys; j++) {
-                if (!this.taulukko[i][j].getStatus().equals("avattu")) {
-                    this.taulukko[i][j].avaaLopussa();
+                if (lopputulos.equals("voitto")){
+                    if (!this.taulukko[i][j].getStatus().equals("avattu") && this.taulukko[i][j].getSisalto() != 9) {
+                        this.taulukko[i][j].avaaLopussa();
+                    }
+                } else {
+                    if (!this.taulukko[i][j].getStatus().equals("avattu")) {
+                        this.taulukko[i][j].avaaLopussa();
+                    }
                 }
             }
         }
     }
-
+    
+    
     // tarkistaa onko peli voitettu, eli onko kaikki paitsi miinoja sisältävät ruudut avattu
     public boolean onkoVoitettu() {
         for (int i = 0; i < this.korkeus; i++) {
@@ -242,4 +265,5 @@ public class Pelilauta {
         }
         return true;
     }
+    
 }
