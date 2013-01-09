@@ -1,8 +1,8 @@
-package gui;
+package domain;
 
 import java.util.ArrayList;
 import miinaharava.domain.Ruutu;
-import miinaharava.gui.Pelilauta;
+import miinaharava.domain.Pelilauta;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -23,7 +23,7 @@ public class PelilautaTest {
 
     @Before
     public void setUp() {
-        lauta = new Pelilauta(20, 30, 10);
+        lauta = new Pelilauta(20, 30, 10, "punainen");
     }
 
     @After
@@ -35,38 +35,13 @@ public class PelilautaTest {
         assertEquals(lauta.getKorkeus(), 30);
         assertEquals(lauta.getLeveys(), 20);
     }
-    
-    @Test
-    public void pelilaudanKokoAsetetaanOikeinJosMinimikoko(){
-        Pelilauta minimilauta = new Pelilauta(5,5,2);
-        
-        assertEquals(minimilauta.getKorkeus(), 5);
-        assertEquals(minimilauta.getLeveys(), 5);
-    }
-    
-    @Test
-    public void pelilaudanKokoAsetetaanOikeinJosLiianPieni(){
-        Pelilauta pienilauta = new Pelilauta(4,4,3);
-        
-        assertEquals(pienilauta.getKorkeus(), 5);
-        assertEquals(pienilauta.getLeveys(), 5);
-    }    
 
     @Test
-    public void pelilaudanKokoAsetetaanOikeinJosMaksimikoko(){
-        Pelilauta minimilauta = new Pelilauta(300,300,20);
-        
-        assertEquals(minimilauta.getKorkeus(), 300);
-        assertEquals(minimilauta.getLeveys(), 300);
-    }
-    
-    @Test
-    public void pelilaudanKokoAsetetaanOikeinJosLiianSuuri(){
-        Pelilauta suurilauta = new Pelilauta(301,301,20);
-        
-        assertEquals(suurilauta.getKorkeus(), 300);
-        assertEquals(suurilauta.getLeveys(), 300);
-    }    
+    public void pelilaudanTaulukkoGeneroidaanOikeaanKokoon() {
+        lauta.generoiTaulukko(3, 3, "punainen");
+        assertEquals(lauta.getKorkeus(), 3);
+        assertEquals(lauta.getLeveys(), 3);
+    }   
     
     @Test
     public void miinojaAsetetaanOikeaMaara() {
@@ -80,74 +55,100 @@ public class PelilautaTest {
         }
         assertEquals(lauta.getMiinoja(), lkm);
     }
-    
-    @Test
-    public void miinojaOnOikeaMaaraJosAlarajalla() {
-        Pelilauta vahanmiinoja = new Pelilauta(7,7,1);
-        
-        assertEquals(vahanmiinoja.getMiinoja(), 1);
-    }   
-    
-    @Test
-    public void miinojaOnOikeaMaaraJosLiianVahan() {
-        Pelilauta vahanmiinoja = new Pelilauta(7,7,0);
-        
-        assertEquals(vahanmiinoja.getMiinoja(), 1);
-    }    
-    
-    @Test
-    public void miinojaOnOikeaMaaraJosYlarajalla() {
-        Pelilauta paljonmiinoja = new Pelilauta(10,10,50);
-        
-        assertEquals(paljonmiinoja.getMiinoja(), 50);
-    }   
-    
-    @Test
-    public void miinojaOnOikeaMaaraJosLiianPaljon() {
-        Pelilauta paljonmiinoja = new Pelilauta(10,10,50+1);
-        
-        assertEquals(paljonmiinoja.getMiinoja(), 50);
-    }        
-    
 
     @Test
     public void miinatSivuillaLasketaanOikein() {
-        lauta.generoiTaulukko(3, 3);
-        lauta.getTaulukko()[0][1].setSisalto(9);  
+        lauta.generoiTaulukko(3, 3, "punainen");
+        lauta.getTaulukko()[0][1].setSisalto(9);
         lauta.getTaulukko()[1][0].setSisalto(9);
         lauta.getTaulukko()[1][2].setSisalto(9);
         lauta.getTaulukko()[2][1].setSisalto(9);
 
         assertEquals(4, lauta.laskeYmparoivatMiinat(1, 1));
     }
-    
+
     @Test
     public void miinatSivuillaLasketaanOikeinKulmaruudulle() {
-        lauta.generoiTaulukko(3, 3);
-        lauta.getTaulukko()[0][1].setSisalto(9);  
+        lauta.generoiTaulukko(3, 3, "punainen");
+        lauta.getTaulukko()[0][1].setSisalto(9);
         lauta.getTaulukko()[1][0].setSisalto(9);
 
-        assertEquals(2, lauta.laskeYmparoivatMiinat(0,0));
-    }    
-    
+        assertEquals(2, lauta.laskeYmparoivatMiinat(0, 0));
+    }
+
     @Test
     public void miinatKulmissaLasketaanOikein() {
-        lauta.generoiTaulukko(3, 3);
-        lauta.getTaulukko()[0][0].setSisalto(9);  
+        lauta.generoiTaulukko(3, 3, "punainen");
+        lauta.getTaulukko()[0][0].setSisalto(9);
         lauta.getTaulukko()[0][2].setSisalto(9);
         lauta.getTaulukko()[2][0].setSisalto(9);
         lauta.getTaulukko()[2][2].setSisalto(9);
 
         assertEquals(4, lauta.laskeYmparoivatMiinat(1, 1));
-    }   
-    
+    }
+
     @Test
     public void miinatKulmissaLasketaanOikeinKulmaruudulle() {
-        lauta.generoiTaulukko(3, 3);
-        lauta.getTaulukko()[1][1].setSisalto(9);  
+        lauta.generoiTaulukko(3, 3, "punainen");
+        lauta.getTaulukko()[1][1].setSisalto(9);
 
-        assertEquals(1, lauta.laskeYmparoivatMiinat(0,0));
-    }     
+        assertEquals(1, lauta.laskeYmparoivatMiinat(0, 0));
+    }
+
+    @Test
+    public void onkoTaulukossaPalauttaaTrueJosOnTaulukossaTapaus1() {
+        assertTrue(lauta.onkoTaulukossa(29,19));
+    }  
+    
+    @Test
+    public void onkoTaulukossaPalauttaaTrueJosOnTaulukossaTapaus2() {
+        assertTrue(lauta.onkoTaulukossa(0,0));
+    }  
+    
+    @Test
+    public void onkoTaulukossaPalauttaaFalseJosEiOleTaulukossaTapaus1() {
+        assertFalse(lauta.onkoTaulukossa(-1,0));
+    }
+    
+    @Test
+    public void onkoTaulukossaPalauttaaFalseJosEiOleTaulukossaTapaus2() {
+        assertFalse(lauta.onkoTaulukossa(29,20));
+    }    
+    
+    @Test
+    public void haeMiinaPalauttaaYksiJosSoluOnTaulukossaJaSiinaOnMiinaTapaus1() {
+        lauta.getTaulukko()[29][19].setSisalto(9);
+
+        assertEquals(1, lauta.haeMiina(29,19));
+    }
+    
+    @Test
+    public void haeMiinaPalauttaaYksiJosSoluOnTaulukossaJaSiinaOnMiinaTapaus2() {
+        lauta.getTaulukko()[0][0].setSisalto(9);
+
+        assertEquals(1, lauta.haeMiina(0,0));
+    }    
+    
+    @Test
+    public void haeMiinaPalauttaaNollaJosSoluTaulukonUlkopuolellaKulmatapaus() {
+        assertEquals(0, lauta.haeMiina(30,20));
+    }   
+       
+    
+    @Test
+    public void haeMiinaPalauttaaNollaJosSoluTaulukonUlkopuolellaReunatapaus() {
+        lauta.generoiTaulukko(3, 3, "punainen");
+
+        assertEquals(0, lauta.haeMiina(30,19));
+        assertEquals(0, lauta.haeMiina(29,20));
+    }    
+    
+    @Test
+    public void haeMiinaPalauttaaNollaJosEiMiinaa() {
+        lauta.getTaulukko()[29][19].setSisalto(1);
+
+        assertEquals(0, lauta.haeMiina(29,19));
+    }    
     
     @Test
     public void onkoEnsimmainenAvausPalauttaaFalseJosJotainJoAvattu() {
@@ -162,7 +163,7 @@ public class PelilautaTest {
         }
         assertFalse(kiinni);
     }
-    
+
     @Test
     public void onkoEnsimmainenAvausPalauttaaFalseJosEnsimmainenKulmaruutuAvattu() {
         lauta.getTaulukko()[0][0].setStatus("avattu");
@@ -175,8 +176,8 @@ public class PelilautaTest {
             }
         }
         assertFalse(kiinni);
-    }    
-    
+    }
+
     @Test
     public void onkoEnsimmainenAvausPalauttaaFalseJosViimeinenKulmaruutuAvattu() {
         lauta.getTaulukko()[29][19].setStatus("avattu");
@@ -190,9 +191,9 @@ public class PelilautaTest {
         }
         assertFalse(kiinni);
     }
-    
+
     @Test
-    public void avaaKaikkiKutsunJalkeenMikaanRuutuEiOleKiinni() {
+    public void avaaKaikkiKutsunJalkeenMikaanRuutuEiOleKiinniHavitessa() {
         lauta.getTaulukko()[0][0].setStatus("merkattu");
         lauta.getTaulukko()[29][19].setStatus("merkattu");
         lauta.avaaKaikki("havio");
@@ -208,10 +209,26 @@ public class PelilautaTest {
     }
     
     @Test
-    public void voitettaessaKaikkiPaitsiMiinatAvattuTapausMiinaKeskella(){
-        lauta.generoiTaulukko(3, 3);
-        lauta.getTaulukko()[1][1].setSisalto(9);  
-        
+    public void avaaKaikkiKutsunJalkeenMiinojaEiAvataVoitettaessa() {
+        lauta.getTaulukko()[0][0].setStatus("merkattu");
+        lauta.getTaulukko()[29][19].setStatus("merkattu");
+        lauta.avaaKaikki("voitto");
+        boolean kiinni = false;
+        for (int i = 0; i < lauta.getKorkeus(); i++) {
+            for (int j = 0; j < lauta.getLeveys(); j++) {
+                if (lauta.getTaulukko()[i][j].getStatus().equals("avattu") && lauta.getTaulukko()[i][j].getSisalto() == 9) {
+                    kiinni = true;
+                }
+            }
+        }
+        assertFalse(kiinni);
+    }    
+
+    @Test
+    public void voitettaessaKaikkiPaitsiMiinatAvattuTapausMiinaKeskella() {
+        lauta.generoiTaulukko(3, 3, "punainen");
+        lauta.getTaulukko()[1][1].setSisalto(9);
+
         for (int i = 0; i < lauta.getKorkeus(); i++) {
             for (int j = 0; j < lauta.getLeveys(); j++) {
                 if (lauta.getTaulukko()[i][j].getSisalto() != 9) {
@@ -219,15 +236,15 @@ public class PelilautaTest {
                 }
             }
         }
-        
+
         assertTrue(lauta.onkoVoitettu());
     }
-    
+
     @Test
-    public void voitettaessaKaikkiPaitsiMiinataAvattuTapausMiinatReunassa(){
-        lauta.generoiTaulukko(3, 3);
-        lauta.getTaulukko()[1][1].setStatus("avattu");  
-        
+    public void voitettaessaKaikkiPaitsiMiinataAvattuTapausMiinatReunassa() {
+        lauta.generoiTaulukko(3, 3, "punainen");
+        lauta.getTaulukko()[1][1].setStatus("avattu");
+
         for (int i = 0; i < lauta.getKorkeus(); i++) {
             for (int j = 0; j < lauta.getLeveys(); j++) {
                 if (!lauta.getTaulukko()[i][j].getStatus().equals("avattu")) {
@@ -235,56 +252,56 @@ public class PelilautaTest {
                 }
             }
         }
-        
+
         assertTrue(lauta.onkoVoitettu());
-    }    
-    
+    }
+
     @Test
-    public void avaaKaikkiNollatToimiiOikeinIsompialue(){
-        lauta.generoiTaulukko(3, 3);
-        lauta.getTaulukko()[0][0].setSisalto(9);  
+    public void avaaViereisetNollatToimiiOikeinIsompialue() {
+        lauta.generoiTaulukko(3, 3, "punainen");
+        lauta.getTaulukko()[0][0].setSisalto(9);
         lauta.asetaMiinattomat();
         ArrayList<Ruutu> avattavat = lauta.avaaViereisetNollat(2, 2, new ArrayList<Ruutu>());
-        
+
         boolean nollatAvattu = true;
-        for(Ruutu ruutu : avattavat){
-            if (ruutu.getStatus().equals("kiinni")){
+        for (Ruutu ruutu : avattavat) {
+            if (ruutu.getStatus().equals("kiinni")) {
                 nollatAvattu = false;
             }
         }
-        
+
         assertEquals("kiinni", lauta.getTaulukko()[0][0].getStatus());
         assertTrue(nollatAvattu);
     }
-    
+
     @Test
-    public void avaaKaikkiNollatToimiiOikeinPienempialue(){
-        lauta.generoiTaulukko(3, 3);
-        lauta.getTaulukko()[0][0].setSisalto(9);  
+    public void avaaViereisetNollatToimiiOikeinPienempialue() {
+        lauta.generoiTaulukko(3, 3, "punainen");
+        lauta.getTaulukko()[0][0].setSisalto(9);
         lauta.getTaulukko()[0][1].setSisalto(9);
         lauta.getTaulukko()[0][2].setSisalto(9);
         lauta.getTaulukko()[1][2].setSisalto(9);
         lauta.getTaulukko()[2][2].setSisalto(9);
-        
+
         lauta.asetaMiinattomat();
         ArrayList<Ruutu> avattavat = lauta.avaaViereisetNollat(0, 2, new ArrayList<Ruutu>());
-        
+
         boolean nollatAvattu = true;
-        for(Ruutu ruutu : avattavat){
-            if (ruutu.getStatus().equals("kiinni")){
+        for (Ruutu ruutu : avattavat) {
+            if (ruutu.getStatus().equals("kiinni")) {
                 nollatAvattu = false;
             }
         }
-        
+
         assertEquals("kiinni", lauta.getTaulukko()[0][0].getStatus());
         assertEquals("kiinni", lauta.getTaulukko()[0][1].getStatus());
         assertEquals("kiinni", lauta.getTaulukko()[0][2].getStatus());
         assertEquals("kiinni", lauta.getTaulukko()[1][2].getStatus());
         assertEquals("kiinni", lauta.getTaulukko()[2][2].getStatus());
-        
+
         assertTrue(nollatAvattu);
-    }    
-    
+    }
+
     @Test
     public void nollauksenJalkeenKaikkienRuutujenSisaltoNolla() {
         lauta.nollaa();
@@ -297,15 +314,15 @@ public class PelilautaTest {
             }
         }
         assertTrue(kaikkiNollia);
-    }    
-    
+    }
+
     @Test
     public void nollausNollaaKulmat() {
-        lauta.generoiTaulukko(3, 3);
-        lauta.getTaulukko()[0][0].setSisalto(9);  
+        lauta.generoiTaulukko(3, 3, "punainen");
+        lauta.getTaulukko()[0][0].setSisalto(9);
         lauta.getTaulukko()[0][2].setSisalto(9);
         lauta.getTaulukko()[2][0].setSisalto(9);
-        lauta.getTaulukko()[2][2].setSisalto(9);        
+        lauta.getTaulukko()[2][2].setSisalto(9);
         lauta.nollaa();
         boolean kaikkiNollia = true;
         for (int i = 0; i < lauta.getKorkeus(); i++) {
@@ -316,5 +333,5 @@ public class PelilautaTest {
             }
         }
         assertTrue(kaikkiNollia);
-    }     
+    }
 }

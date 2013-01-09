@@ -1,5 +1,5 @@
 
-package miinaharava.gui;
+package miinaharava.domain;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -46,7 +46,8 @@ public class Kello extends TimerTask {
     }
     
     /**
-     * TimerTask-olion metodi joka suoritetaan sekunnin välein (aika määritelty Miinaharava-luokassa).
+     * TimerTask-olion abstrakti metodi joka suoritetaan sekunnin välein
+     * (aika määritelty Miinaharava-luokassa).
      * Lisää aikaa yhdellä sekunnin välein ja päivittää JLabelissa näkyvän ajan.
      */  
     @Override

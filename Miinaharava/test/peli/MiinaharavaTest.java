@@ -3,7 +3,7 @@ package peli;
 
 import java.util.Timer;
 import javax.swing.JLabel;
-import miinaharava.gui.Kello;
+import miinaharava.domain.Kello;
 import miinaharava.peli.Miinaharava;
 import static org.junit.Assert.assertEquals;
 import org.junit.*;
@@ -61,13 +61,5 @@ public class MiinaharavaTest {
         assertEquals(20, harava.getLauta().getKorkeus());
         assertEquals(110, harava.getLauta().getMiinoja());
     }     
-   
-//    @Test
-//    public void kelloNollataanUudessaPelissa(){
-//        harava.luoPelilauta("iso");
-//        
-//        assertEquals(35, harava.getLauta().getLeveys());
-//        assertEquals(20, harava.getLauta().getKorkeus());
-//        assertEquals(110, harava.getLauta().getMiinoja());
-//    }         
+           
 }

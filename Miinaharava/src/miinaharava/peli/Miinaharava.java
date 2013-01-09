@@ -1,5 +1,7 @@
 package miinaharava.peli;
 
+import miinaharava.domain.Kello;
+import miinaharava.domain.Pelilauta;
 import java.io.IOException;
 import java.util.Timer;
 import javax.swing.JLabel;

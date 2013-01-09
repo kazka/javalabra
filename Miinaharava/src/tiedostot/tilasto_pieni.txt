@@ -3,7 +3,5 @@ viljami                14 sek
 matti                  21 sek
 martti                 25 sek
 kaisa                  36 sek
-kk                     19 sek
-kk                     28 sek
-kk                     23 sek
 kaisa                  37 sek
+kk                     17 sek

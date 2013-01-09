@@ -49,5 +49,7 @@ kirjautumistoiminto ja testejä
 7.1. 2h
 refaktorointi ja sekvenssikaaviot
 
-8.1. 1h 30min
-värivalinta ja refaktorointi
+8.1. 2h 30min
+värivalinta ja refaktorointi ja javadoc
+
+9.1. 2h javadoc ja testit

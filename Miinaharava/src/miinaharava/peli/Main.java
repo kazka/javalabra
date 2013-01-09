@@ -3,7 +3,7 @@ package miinaharava.peli;
 
 import javax.swing.SwingUtilities;
 import miinaharava.gui.Kayttoliittyma;
-import miinaharava.gui.Pelilauta;
+import miinaharava.domain.Pelilauta;
 
 public class Main{
 
