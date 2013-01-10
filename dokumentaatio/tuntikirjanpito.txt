@@ -52,4 +52,5 @@ refaktorointi ja sekvenssikaaviot
 8.1. 2h 30min
 värivalinta ja refaktorointi ja javadoc
 
-9.1. 2h javadoc ja testit
+9.1. 2h
+javadoc ja testit

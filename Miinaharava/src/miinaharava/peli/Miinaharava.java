@@ -143,7 +143,7 @@ public class Miinaharava {
     }
 
     /**
-     * Palauttaa miinaharavaan liittyvän pelilaudan
+     * Palauttaa miinaharavaan liittyvän Timer-olion
      *
      * @return timer
      */   

@@ -50,11 +50,20 @@ public class Tulos implements Comparable<Tulos> {
         }
     }
 
+    /**
+     * Palauttaa tulokseen liittyvän pelaajan nimen/tunnuksen
+     *
+     * @return nimi
+     */ 
     public String getNimi() {
         return nimi;
     }
 
-    
+    /**
+     * Palauttaa tuloksen eli peliin käytetyn ajan
+     *
+     * @return tulos
+     */ 
     public int getTulos() {
         return tulos;
     }

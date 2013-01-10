@@ -28,25 +28,9 @@ public class Pelilauta {
     * 2-ulotteinen Ruutu-olioista koostuva taulukko joka toimii pelilaudan pohjana
     */
     private Ruutu[][] taulukko;
-
-    /**
-    * Konstruktori joka toimii ilman värin antamista, käytetään testeissä.
-    * Generoi pelilaudalle Ruutu-taulukon ja kutsuu metodeita jotka asettavat
-    * miinat sekä miinattomien ruutujen sisällöt.
-    * 
-    * @param leveys Pelilaudan leveys
-    * @param korkeus Pelilaudan korkeus
-    * @param miinoja Pelilaudan miinojen määrä
-    */
-//    public Pelilauta(int leveys, int korkeus, int miinoja) {
-//        this.taulukko = new Ruutu[this.korkeus][this.leveys];
-//        generoiTaulukko(this.korkeus, this.leveys);
-//        asetaMiinat();
-//        asetaMiinattomat();
-//    }
     
     /**
-    * Pääasiallinen konstruktori.
+    * Konstruktori.
     * Generoi pelilaudalle Ruutu-taulukon ja kutsuu metodeita jotka asettavat
     * miinat sekä miinattomien ruutujen sisällöt.
     * 
@@ -63,54 +47,7 @@ public class Pelilauta {
         generoiTaulukko(this.korkeus, this.leveys, vari);
         asetaMiinat();
         asetaMiinattomat();
-    }
-    
-//    public final void tarkistaKoko(int leveys, int korkeus, int miinoja) {
-//        if (leveys < 5) {
-//            this.leveys = 5;
-//        } else if (leveys > 300) {
-//            this.leveys = 300;
-//        } else {
-//            this.leveys = leveys;
-//        }
-//        if (korkeus < 5) {
-//            this.korkeus = 5;
-//        } else if (korkeus > 300) {
-//            this.korkeus = 300;
-//        } else {
-//            this.korkeus = korkeus;
-//        }
-//        if (miinoja < 1) {
-//            this.miinoja = 1;
-//        } else if (miinoja > this.leveys * this.korkeus / 2) {
-//            this.miinoja = this.leveys * this.korkeus / 2;  // miinoja korkeintaan puolet ruuduista
-//        } else {
-//            this.miinoja = miinoja;
-//        }
-//    }
-
-    // generoi taulukon eli asettaa joka soluun uuden ruudun
-//    public final void generoiTaulukko() {
-//        for (int i = 0; i < this.korkeus; i++) {
-//            for (int j = 0; j < this.leveys; j++) {
-//                this.taulukko[i][j] = new Ruutu(j,i);
-//            }
-//        }
-//    }
-
-    /**
-    * Generoi pelilaudalle Ruutu-taulukon
-    * 
-    * @param korkeus Generoitavan taulukon korkeus
-    * @param leveys Generoitavan taulukon leveys
-    */
-//    public final void generoiTaulukko(int korkeus, int leveys) {
-//        for (int i = 0; i < korkeus; i++) {
-//            for (int j = 0; j < leveys; j++) {
-//                this.taulukko[i][j] = new Ruutu(j,i);
-//            }
-//        }
-//    }
+    }  
     
     /**
     * Generoi pelilaudalle Ruutu-taulukon ja asettaa ruudulle oikean värin
@@ -132,7 +69,8 @@ public class Pelilauta {
     }    
 
     /**
-    * Asettaa oikean määrän miinoja sattumanvaraisiin ruutuihin
+    * Asettaa oikean määrän miinoja sattumanvaraisiin ruutuihin. Jos ruudussa
+    * on jo miina, etsitään miinalle toinen paikka.
     */
     public final void asetaMiinat() {
         Random random = new Random();
@@ -153,7 +91,7 @@ public class Pelilauta {
 
     /**
     * Kutsuu miinattomille ruuduille metodia joka laskee luvun, kuinka monessa
-    * viereisessä ruudussa on miina
+    * viereisessä ruudussa on miina.
     */
     public final void asetaMiinattomat() {
         for (int i = 0; i < this.korkeus; i++) {
@@ -310,22 +248,47 @@ public class Pelilauta {
         return true;
     }
 
+    /**
+     * Palauttaa pelilaudan korkeuden
+     *
+     * @return korkeus
+     */ 
     public int getKorkeus() {
         return korkeus;
     }
 
+    /**
+     * Palauttaa pelilaudan leveyden
+     *
+     * @return leveys
+     */ 
     public int getLeveys() {
         return leveys;
     }
 
+    /**
+     * Palauttaa pelilautaan liittyvän taulukon
+     *
+     * @return taulukko
+     */ 
     public Ruutu[][] getTaulukko() {
         return taulukko;
     }
 
+    /**
+     * Palauttaa pelilaudan miinojen määrän
+     *
+     * @return miinojen määrä
+     */ 
     public int getMiinoja() {
         return miinoja;
     }
 
+    /**
+     * Asetetaan pelilaudalle uusi taulukko
+     *
+     * @param timer Asetettava taulukko
+     */
     public void setTaulukko(Ruutu[][] taulukko) {
         this.taulukko = taulukko;
     }

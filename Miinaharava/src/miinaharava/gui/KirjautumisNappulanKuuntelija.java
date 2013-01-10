@@ -12,12 +12,41 @@ import miinaharava.peli.Miinaharava;
  * Luokka jolla kuunnellaan klikkauksia nappulassa jolla kirjaudutaan
  */
 public class KirjautumisNappulanKuuntelija implements ActionListener{
+    
+    /**
+    * Miinaharava-olio johon kuuntelija liittyy
+    */
     private Miinaharava harava;
+    
+    /**
+    * JFrame jonka tietoja kuuntelijalla päivitetään
+    */
     private JFrame frame;
+    
+    /**
+    * Tekstikenttä josta tuodaan sisältö kuuntelijalle
+    */
     private JTextField tunnusKentta;
+    
+    /**
+    * Tekstikenttä josta tuodaan sisältö kuuntelijalle
+    */
     private JTextField ssKentta;
+    
+    /**
+    * Mahdollinen virheilmoitus jota kuuntelijassa päivitetään
+    */
     private JLabel virheilmoitus;
 
+    /**
+    * Konstruktori
+    * 
+    * @param harava Miinaharava johon kuuntelija liittyy
+    * @param ruutu Ruutu johon kuuntelija liittyy
+    * @param tunnusKentta Tekstikenttä josta saadaan syötetty tunnus
+    * @param ssKenttä Tekstikenttä josta saadaan syötetty salasana
+    * @param virheilmoitus Alussa tyhjä JLabel johon asetetaan mahdollinen virheilmoitus
+    */
     public KirjautumisNappulanKuuntelija(Miinaharava harava, JFrame frame, JTextField tunnusKentta, JTextField ssKentta, JLabel virheilmoitus) {
         this.harava = harava;
         this.frame = frame;        
@@ -26,6 +55,11 @@ public class KirjautumisNappulanKuuntelija implements ActionListener{
         this.virheilmoitus = virheilmoitus;
     }
 
+    /**
+    * Klikkauksessa tarkistetaan tunnuksen olemassaolo sekä tunnuksen ja salasanan
+    * täsmäävyys. Epäonnistuessa näytetään virheilmoitus. Onnistuessa asetetaan
+    * sisäänkirjautunut käyttäjä ja avataan uuden pelin asetusikkuna.
+    */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (!this.harava.getKayttajalista().getKayttajat().containsKey(this.tunnusKentta.getText())){

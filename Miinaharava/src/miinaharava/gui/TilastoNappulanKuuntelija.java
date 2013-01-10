@@ -11,14 +11,24 @@ import miinaharava.peli.Miinaharava;
  * Luokka jolla kuunnellaan klikkauksia nappulassa jolla näytetään tilastot
  */
 public class TilastoNappulanKuuntelija implements ActionListener {
+    
+    /**
+    * Miinaharava-olio johon kuuntelija liittyy
+    */
     private Miinaharava harava;
-    private JFrame frame;
 
+    /**
+    * Konstruktori.
+    * 
+    * @param harava Miinaharava johon kuuntelija liittyy
+    */
     public TilastoNappulanKuuntelija(Miinaharava harava, JFrame frame) {
         this.harava = harava;
-        this.frame = frame;        
     }
 
+    /**
+    * Klikkauksessa avataan uusi TilastoIkkuna
+    */
     @Override
     public void actionPerformed(ActionEvent e) {
         TilastoIkkuna tikkuna = new TilastoIkkuna(this.harava);

@@ -105,6 +105,11 @@ public class Kayttajalista {
         return false;
     }
 
+    /**
+     * Palauttaa käyttäjälistan HashMapina
+     *
+     * @return käyttäjälista
+     */ 
     public HashMap<String, String> getKayttajat() {
         return kayttajat;
     }
@@ -123,6 +128,11 @@ public class Kayttajalista {
         
     }
 
+    /**
+     * Palauttaa käyttäjätiedoston
+     *
+     * @return käyttäjätiedosto
+     */ 
     public File getTiedosto() {
         return tiedosto;
     }

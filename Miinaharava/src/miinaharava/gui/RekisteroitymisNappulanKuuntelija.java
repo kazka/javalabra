@@ -16,12 +16,41 @@ import miinaharava.peli.Miinaharava;
  * Luokka jolla kuunnellaan klikkauksia nappulassa jolla luodaan uusi tunnus
  */
 public class RekisteroitymisNappulanKuuntelija implements ActionListener{
+    
+    /**
+    * Miinaharava-olio johon kuuntelija liittyy
+    */
     private Miinaharava harava;
+    
+    /**
+    * JFrame jonka tietoja kuuntelijalla päivitetään
+    */
     private JFrame frame;
+    
+    /**
+    * Tekstikenttä josta tuodaan sisältö kuuntelijalle
+    */
     private JTextField tunnusKentta;
+    
+    /**
+    * Tekstikenttä josta tuodaan sisältö kuuntelijalle
+    */
     private JTextField ssKentta;
+    
+    /**
+    * Mahdollinen virheilmoitus jota kuuntelijassa päivitetään
+    */
     private JLabel virheilmoitus;
 
+    /**
+    * Konstruktori
+    * 
+    * @param harava Miinaharava johon kuuntelija liittyy
+    * @param ruutu Ruutu johon kuuntelija liittyy
+    * @param tunnusKentta Tekstikenttä josta saadaan syötetty tunnus
+    * @param ssKenttä Tekstikenttä josta saadaan syötetty salasana
+    * @param virheilmoitus Alussa tyhjä JLabel johon asetetaan mahdollinen virheilmoitus
+    */
     public RekisteroitymisNappulanKuuntelija(Miinaharava harava, JFrame frame, JTextField tunnusKentta, JTextField ssKentta, JLabel virheilmoitus) {
         this.harava = harava;
         this.frame = frame;        
@@ -30,6 +59,12 @@ public class RekisteroitymisNappulanKuuntelija implements ActionListener{
         this.virheilmoitus = virheilmoitus;
     }
 
+    /**
+    * Klikkauksessa tarkistetaan ettei tunus ole varattu ja ettei tunnuksessa tai
+    * salasanassa ole välilyöntejä. Epäonnistuessa näytetään virheilmoitus.
+    * Onnistuessa kirjataan uusi käyttäjä tilastoon, asetetaan sisäänkirjautunut
+    * käyttäjä ja avataan uuden pelin asetusikkuna.
+    */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.harava.getKayttajalista().getKayttajat().containsKey(this.tunnusKentta.getText())){

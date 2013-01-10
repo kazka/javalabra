@@ -79,3 +79,6 @@ pekka                  16 sek
 kaisa                  10 sek
 kaisa                  10 sek
 pekka                  16 sek
+kaisa                  10 sek
+kaisa                  10 sek
+pekka                  16 sek

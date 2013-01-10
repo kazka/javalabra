@@ -1,0 +1,13 @@
+Automaattisesti ei ole testattu:
+
+¤ Graafisiin käyttöliittymiin liittyviä asioita, myös silloin kun niitä on gui-luokkien ulkopuolella, esim. Ruutu-luokan vaihdaKuvake() ja luoBtn() -metodeita
+
+¤ Randomiutta eli esim. kuinka randomisti miinat jakautuvat laudalle, ei ole testattu koska kuulemma asia tulee vasta myöhemmillä kursseilla
+
+¤ Kelloa eli sitä että sekuntiajastin on täsmällinen ja antaa oikean tuloksen. Testattu vain silmämääräisesti...
+
+==================
+
+Tiedostetut bugit:
+
+¤ Pelilaudan gui ei ajoittain "kuule" klikkausta ruudussa, eli ruutu ei aina avaudu tai merkkaudu
