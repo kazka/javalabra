@@ -60,8 +60,9 @@ public class RekisteroitymisNappulanKuuntelija implements ActionListener{
     }
 
     /**
-    * Klikkauksessa tarkistetaan ettei tunus ole varattu ja ettei tunnuksessa tai
-    * salasanassa ole välilyöntejä. Epäonnistuessa näytetään virheilmoitus.
+    * Klikkauksessa tarkistetaan ettei tunnus ole varattu, ettei tunnuksessa tai
+    * salasanassa ole välilyöntejä ja ettei kenttiä ole jätetty tyhjäksi.
+    * Epäonnistuessa näytetään virheilmoitus.
     * Onnistuessa kirjataan uusi käyttäjä tilastoon, asetetaan sisäänkirjautunut
     * käyttäjä ja avataan uuden pelin asetusikkuna.
     */
@@ -71,6 +72,8 @@ public class RekisteroitymisNappulanKuuntelija implements ActionListener{
             this.virheilmoitus.setText(":< tunnus on varattu");
         } else if (this.tunnusKentta.getText().indexOf(" ")!=-1 || this.ssKentta.getText().indexOf(" ")!=-1){
             this.virheilmoitus.setText(":< tunnus tai salasana ei saa sisältää välilyöntejä");
+        } else if (this.tunnusKentta.getText().equals("") || this.ssKentta.getText().equals("")){
+            this.virheilmoitus.setText(":< kirjoita tunnus ja salasana");            
         } else {
             JOptionPane.showMessageDialog(null, ":> tunnus luotu");
             this.frame.dispose();

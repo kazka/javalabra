@@ -7,9 +7,9 @@ package miinaharava.domain;
 public class Tulos implements Comparable<Tulos> {
     
     /**
-    * Käyttäjän nimi eli tunnus jolle tulos kuuluu
+    * Käyttäjän tunnus jolle tulos kuuluu
     */
-    private String nimi;
+    private String tunnus;
     
     /**
     * Tulos eli peliin kulunut aika sekunteina
@@ -19,11 +19,11 @@ public class Tulos implements Comparable<Tulos> {
     /**
     * Konstruktori
     * 
-    * @param nimi Pelaajan nimi/tunnus
+    * @param tunnus Pelaajan tunnus
     * @param tulos Pelistä saatu tulos
     */
-    public Tulos(String nimi, int tulos) {
-        this.nimi = nimi;
+    public Tulos(String tunnus, int tulos) {
+        this.tunnus = tunnus;
         this.tulos = tulos;
     }
 
@@ -32,7 +32,7 @@ public class Tulos implements Comparable<Tulos> {
     */
     @Override
     public String toString() {
-        String nimiJaTyhjaa = String.format("%-22s", this.nimi);
+        String nimiJaTyhjaa = String.format("%-22s", this.tunnus);
         return nimiJaTyhjaa + " " + this.tulos + " sek";
     }
     
@@ -51,12 +51,12 @@ public class Tulos implements Comparable<Tulos> {
     }
 
     /**
-     * Palauttaa tulokseen liittyvän pelaajan nimen/tunnuksen
+     * Palauttaa tulokseen liittyvän pelaajan tunnuksen
      *
-     * @return nimi
+     * @return tunnus
      */ 
-    public String getNimi() {
-        return nimi;
+    public String getTunnus() {
+        return tunnus;
     }
 
     /**

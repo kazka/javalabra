@@ -34,8 +34,10 @@ public class KlikkaustenKuuntelija implements MouseListener {
     /**
     * Klikkauksessa tarkistetaan ensin että ruutu ei ole jo avattu.
     * Sen jälkeen merkataan ruutu, jos klikattiin hiiren oikeaa nappulaa.
-    * Sen jälkeen tarkistetaan alkutilanne, testataan oliko ruudussa miina ja
-    * avataan ruutu normaalisti jos ei ollut. Lopussa tarkistetaan onko peli tämän
+    * Sen jälkeen tarkistetaan oliko ruutu ensimmäinen jota klikattiin, jos oli niin
+    * tehdään siihen liittyvät toiminnot.
+    * Sitten testataan oliko ruudussa miina tarkistaHavio()-metodilla.
+    * Avataan ruutu normaalisti jos ei ollut. Lopussa tarkistetaan onko peli tämän
     * avaamisen seurauksena voitettu.
     */
     @Override
@@ -44,64 +46,21 @@ public class KlikkaustenKuuntelija implements MouseListener {
             if (e.getButton() == MouseEvent.BUTTON3) {
                 this.ruutu.merkkaa();
             } else if (!this.ruutu.getStatus().equals("merkattu")) {
-                tarkistaAlkutilanne();
+                this.harava.getLauta().tarkistaAlkutilanne(this.ruutu);
 
-                if (tarkistaHavio()) {
+                if (this.ruutu.onkoMiinaa()) {
+                    this.ruutu.vaihdaKuvake(9);
+                    this.harava.havio();
                     return;
                 }
 
-                avaa();
+                this.ruutu.avaa(this.harava.getLauta());
             }
         }
-
-        //    this.harava.getLauta().tulosta();
 
         if (this.harava.getLauta().onkoVoitettu()) {
             this.harava.voitto();
         }
-    }
-
-    /**
-    * Tarkistaa oliko ensimmäisenä klikatussa ruudussa miina. Jos oli, jakaa miinat
-    * uudelleen kunnes ruudussa ei ole miinaa.
-    */
-    public void tarkistaAlkutilanne() {
-        if (this.harava.getLauta().onkoEnsimmainenAvaus() && this.ruutu.getSisalto() == 9) {
-            // jos ensimmäinen klikattu oli miina -> asetetaan miinat uudestaan
-            while (this.ruutu.onkoMiinaa()) {
-                this.harava.getLauta().generoiUusiLauta();
-            }
-        }
-    }
-
-    /**
-    * Avaa ruudun johon kuuntelija liittyy. Jos ruudussa oli luku 0, hakee muut
-    * ympäröivät avattavat ruudut pelilaudan avaaViereisetNollat()-metodilta ja
-    * vaihtaa ruuduille oikeat kuvakkeet.
-    */
-    public void avaa() {
-        this.ruutu.setStatus("avattu");
-
-        if (this.ruutu.getSisalto() == 0) {
-            ArrayList<Ruutu> ruudut = this.harava.getLauta().avaaViereisetNollat(this.ruutu.getX(), this.ruutu.getY(), new ArrayList<Ruutu>());
-            for (Ruutu ruutuTaulukossa : ruudut) {
-                ruutuTaulukossa.vaihdaKuvake(ruutuTaulukossa.getSisalto());
-            }
-        }
-
-        this.ruutu.vaihdaKuvake(this.ruutu.getSisalto());
-    }
-
-    /**
-    * Tarkistaa onko ruudussa miina eli hävittiinkö peli
-    */
-    public boolean tarkistaHavio() {
-        if (this.ruutu.onkoMiinaa()) {
-            this.ruutu.vaihdaKuvake(9);
-            this.harava.havio();
-            return true;
-        }
-        return false;
     }
 
     @Override

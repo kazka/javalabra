@@ -1,5 +1,6 @@
 package miinaharava.domain;
 
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -215,4 +216,22 @@ public class Ruutu {
     public void setVari(String vari) {
         this.vari = vari;
     }
+    
+    /**
+    * Avaa ruudun, kutsutaan tietyn ruudun KlikkaustenKuuntelijasta. Jos ruudussa
+    * oli luku 0, hakee muut ympäröivät avattavat ruudut pelilaudan
+    * avaaViereisetNollat()-metodilta ja vaihtaa ruuduille oikeat kuvakkeet.
+    */
+    public void avaa(Pelilauta lauta) {
+        setStatus("avattu");
+
+        if (this.sisalto == 0) {
+            ArrayList<Ruutu> ruudut = lauta.avaaViereisetNollat(this.x, this.y, new ArrayList<Ruutu>());
+            for (Ruutu ruutuTaulukossa : ruudut) {
+                ruutuTaulukossa.vaihdaKuvake(ruutuTaulukossa.getSisalto());
+            }
+        }
+
+        vaihdaKuvake(this.sisalto);
+    }    
 }

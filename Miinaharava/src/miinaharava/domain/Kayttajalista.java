@@ -69,23 +69,23 @@ public class Kayttajalista {
     /**
     * Lisää uuden käyttäjän HashMapiin
     * 
-    * @param nimi Käyttäjän tunnus
+    * @param tunnus Käyttäjän tunnus
     * @param salasana Käyttäjän salasana
     */
-    public void lisaaKayttaja(String nimi, String salasana){
-        this.kayttajat.put(nimi, salasana);
+    public void lisaaKayttaja(String tunnus, String salasana){
+        this.kayttajat.put(tunnus, salasana);
     }
     
     /**
     * Tarkistaa täsmääkö tunnus ja salasana
     * 
-    * @param nimi Tunnus
+    * @param tunnus Tunnus
     * @param salasana Salasana
     * 
     * @return true jos täsmää
     */
-    public boolean tarkistaTunnus(String nimi, String salasana){
-        if (this.kayttajat.get(nimi).equals(salasana)){
+    public boolean tarkistaTunnus(String tunnus, String salasana){
+        if (this.kayttajat.get(tunnus).equals(salasana)){
             return true;
         }
         return false;
@@ -94,12 +94,12 @@ public class Kayttajalista {
     /**
     * Tarkistaa onko käyttäjätunnus varattu
     * 
-    * @param nimi Etsittävä tunnus
+    * @param tunnus Etsittävä tunnus
     * 
     * @return true jos tunnus on varattu
     */
-    public boolean onkoSamannimistaKayttajaa(String nimi){
-        if (this.kayttajat.containsKey(nimi)){
+    public boolean onkoSamannimistaKayttajaa(String tunnus){
+        if (this.kayttajat.containsKey(tunnus)){
             return true;
         }
         return false;

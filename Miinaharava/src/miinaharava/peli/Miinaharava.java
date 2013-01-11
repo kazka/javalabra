@@ -188,7 +188,7 @@ public class Miinaharava {
                 this.koko = "keskikoko";
                 break;
             case "iso":
-                this.lauta = new Pelilauta(35, 20, 110, valittuVari);
+                this.lauta = new Pelilauta(35, 20, 100, valittuVari);
                 this.koko = "iso";
                 break;
         }

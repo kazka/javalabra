@@ -59,7 +59,7 @@ public class MiinaharavaTest {
         
         assertEquals(35, harava.getLauta().getLeveys());
         assertEquals(20, harava.getLauta().getKorkeus());
-        assertEquals(110, harava.getLauta().getMiinoja());
+        assertEquals(100, harava.getLauta().getMiinoja());
     }     
            
 }

@@ -54,3 +54,9 @@ värivalinta ja refaktorointi ja javadoc
 
 9.1. 2h
 javadoc ja testit
+
+10.1. 2h
+javadoc ja testit
+
+11.1. 1h 30min
+käyttöohje ja pientä korjailua

@@ -32,7 +32,7 @@ public class TulosTest {
     
      @Test
      public void tuloksenNimiJaAikaAsetetaanOikein() {
-         assertEquals("kaisa", tulos.getNimi());
+         assertEquals("kaisa", tulos.getTunnus());
          assertEquals(200, tulos.getTulos());
      }
 }

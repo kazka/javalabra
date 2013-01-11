@@ -334,4 +334,31 @@ public class PelilautaTest {
         }
         assertTrue(kaikkiNollia);
     }
+    
+    @Test
+    public void tarkistaAlkutilanneGeneroiUudenLaudanJosEnsimmaisessaOliMiinaKulmatapaus1() {
+        Ruutu ruutu = lauta.getTaulukko()[29][19];
+        ruutu.setSisalto(9);
+        lauta.tarkistaAlkutilanne(ruutu);
+
+        assertFalse(ruutu.onkoMiinaa());
+    }  
+    
+    @Test
+    public void tarkistaAlkutilanneGeneroiUudenLaudanJosEnsimmaisessaOliMiinaKulmatapaus2() {
+        Ruutu ruutu = lauta.getTaulukko()[0][0];
+        ruutu.setSisalto(9);
+        lauta.tarkistaAlkutilanne(ruutu);
+
+        assertFalse(ruutu.onkoMiinaa());
+    }    
+    
+    @Test
+    public void tarkistaAlkutilanneGeneroiUudenLaudanJosEnsimmaisessaOliMiinaKeskitapaus() {
+        Ruutu ruutu = lauta.getTaulukko()[15][15];
+        ruutu.setSisalto(9);
+        lauta.tarkistaAlkutilanne(ruutu);
+
+        assertFalse(ruutu.onkoMiinaa());
+    }    
 }

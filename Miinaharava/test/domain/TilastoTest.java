@@ -46,7 +46,7 @@ public class TilastoTest {
     public void generoiTulosToimiiOikein() throws IOException {
         Tulos tulos = tilasto.generoiTulos("kaisa 100000");
 
-        assertEquals("kaisa", tulos.getNimi());
+        assertEquals("kaisa", tulos.getTunnus());
         assertEquals(100000, tulos.getTulos());
     }    
     

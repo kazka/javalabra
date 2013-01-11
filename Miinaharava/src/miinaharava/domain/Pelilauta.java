@@ -297,7 +297,7 @@ public class Pelilauta {
     * Lopussa avataan kaikki ruudut joita ei vielä ollut avattu ja vaihdetaan
     * niille oikeat jpg-kuvakkeet
     * 
-    * @param lopputulos "voitto" tai "havio", jos voitettoon niin miinallisia
+    * @param lopputulos "voitto" tai "havio", jos voitettiin niin miinallisia
     * ruutuja ei lopussa avata
     */
     public void avaaKaikki(String lopputulos) {
@@ -347,4 +347,19 @@ public class Pelilauta {
         return true;
     }
     
+    /**
+    * Tarkistaa oliko ensimmäisenä klikatussa ruudussa miina. Jos oli, jakaa miinat
+    * uudelleen kunnes ruudussa ei ole miinaa.
+    * 
+    * @param ruutu Klikattu ruutu
+    */
+    public void tarkistaAlkutilanne(Ruutu ruutu) {
+        int x = ruutu.getX();
+        int y = ruutu.getY();
+        if (onkoEnsimmainenAvaus() && this.taulukko[y][x].getSisalto() == 9) {
+            while (this.taulukko[y][x].onkoMiinaa()) {
+                generoiUusiLauta();
+            }
+        }
+    }    
 }

@@ -6,3 +6,5 @@ martti                 25 sek
 kaisa                  36 sek
 kaisa                  37 sek
 testi                  26 sek
+kk                     20 sek
+kk                     30 sek

@@ -66,12 +66,12 @@ public class TilastonHallinta {
     /**
     * Luo uuden Tulos-olion ja lisää sen oikeaan tilastoon riippuen pelilaudan koosta
     * 
-    * @param nimi Sen käyttäjän nimi/tunnus jolle tulos lisätään
+    * @param tunnus Sen käyttäjän tunnus jolle tulos lisätään
     * @param tulos Aika joka kului pelin voittamiseen
     * @param koko Pelatun pelilaudan koko
     */
-    public void lisaaTulosTilastoon(String nimi, int tulos, String koko){
-        Tulos lisattava = new Tulos(nimi, tulos);
+    public void lisaaTulosTilastoon(String tunnus, int tulos, String koko){
+        Tulos lisattava = new Tulos(tunnus, tulos);
         switch (koko) {
             case "pieni":
                 this.pieni.lisaaTulos(lisattava);
